@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laravel</title> --}}
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" /> --}}
 
         <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        {{-- @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
             <style>
@@ -119,8 +119,8 @@
                     </ul>
                 </div>
                 <div class="bg-[#fff2f2] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden">
-                    {{-- Laravel Logo --}}
-                    <svg class="w-full text-[#F53003] dark:text-[#F61500] transition-all translate-y-0 opacity-100 max-w-none duration-750 starting:opacity-0 starting:translate-y-6" viewBox="0 0 438 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    Laravel Logo --}}
+                    {{-- <svg class="w-full text-[#F53003] dark:text-[#F61500] transition-all translate-y-0 opacity-100 max-w-none duration-750 starting:opacity-0 starting:translate-y-6" viewBox="0 0 438 104" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.2036 -3H0V102.197H49.5189V86.7187H17.2036V-3Z" fill="currentColor" />
                         <path d="M110.256 41.6337C108.061 38.1275 104.945 35.3731 100.905 33.3681C96.8667 31.3647 92.8016 30.3618 88.7131 30.3618C83.4247 30.3618 78.5885 31.3389 74.201 33.2923C69.8111 35.2456 66.0474 37.928 62.9059 41.3333C59.7643 44.7401 57.3198 48.6726 55.5754 53.1293C53.8287 57.589 52.9572 62.274 52.9572 67.1813C52.9572 72.1925 53.8287 76.8995 55.5754 81.3069C57.3191 85.7173 59.7636 89.6241 62.9059 93.0293C66.0474 96.4361 69.8119 99.1155 74.201 101.069C78.5885 103.022 83.4247 103.999 88.7131 103.999C92.8016 103.999 96.8667 102.997 100.905 100.994C104.945 98.9911 108.061 96.2359 110.256 92.7282V102.195H126.563V32.1642H110.256V41.6337ZM108.76 75.7472C107.762 78.4531 106.366 80.8078 104.572 82.8112C102.776 84.8161 100.606 86.4183 98.0637 87.6206C95.5202 88.823 92.7004 89.4238 89.6103 89.4238C86.5178 89.4238 83.7252 88.823 81.2324 87.6206C78.7388 86.4183 76.5949 84.8161 74.7998 82.8112C73.004 80.8078 71.6319 78.4531 70.6856 75.7472C69.7356 73.0421 69.2644 70.1868 69.2644 67.1821C69.2644 64.1758 69.7356 61.3205 70.6856 58.6154C71.6319 55.9102 73.004 53.5571 74.7998 51.5522C76.5949 49.5495 78.738 47.9451 81.2324 46.7427C83.7252 45.5404 86.5178 44.9396 89.6103 44.9396C92.7012 44.9396 95.5202 45.5404 98.0637 46.7427C100.606 47.9451 102.776 49.5487 104.572 51.5522C106.367 53.5571 107.762 55.9102 108.76 58.6154C109.756 61.3205 110.256 64.1758 110.256 67.1821C110.256 70.1868 109.756 73.0421 108.76 75.7472Z" fill="currentColor" />
                         <path d="M242.805 41.6337C240.611 38.1275 237.494 35.3731 233.455 33.3681C229.416 31.3647 225.351 30.3618 221.262 30.3618C215.974 30.3618 211.138 31.3389 206.75 33.2923C202.36 35.2456 198.597 37.928 195.455 41.3333C192.314 44.7401 189.869 48.6726 188.125 53.1293C186.378 57.589 185.507 62.274 185.507 67.1813C185.507 72.1925 186.378 76.8995 188.125 81.3069C189.868 85.7173 192.313 89.6241 195.455 93.0293C198.597 96.4361 202.361 99.1155 206.75 101.069C211.138 103.022 215.974 103.999 221.262 103.999C225.351 103.999 229.416 102.997 233.455 100.994C237.494 98.9911 240.611 96.2359 242.805 92.7282V102.195H259.112V32.1642H242.805V41.6337ZM241.31 75.7472C240.312 78.4531 238.916 80.8078 237.122 82.8112C235.326 84.8161 233.156 86.4183 230.614 87.6206C228.07 88.823 225.251 89.4238 222.16 89.4238C219.068 89.4238 216.275 88.823 213.782 87.6206C211.289 86.4183 209.145 84.8161 207.35 82.8112C205.554 80.8078 204.182 78.4531 203.236 75.7472C202.286 73.0421 201.814 70.1868 201.814 67.1821C201.814 64.1758 202.286 61.3205 203.236 58.6154C204.182 55.9102 205.554 53.5571 207.35 51.5522C209.145 49.5495 211.288 47.9451 213.782 46.7427C216.275 45.5404 219.068 44.9396 222.16 44.9396C225.251 44.9396 228.07 45.5404 230.614 46.7427C233.156 47.9451 235.326 49.5487 237.122 51.5522C238.917 53.5571 240.312 55.9102 241.31 58.6154C242.306 61.3205 242.806 64.1758 242.806 67.1821C242.805 70.1868 242.305 73.0421 241.31 75.7472Z" fill="currentColor" />
@@ -131,7 +131,7 @@
                     </svg>
 
                     {{-- Light Mode 12 SVG --}}
-                    <svg class="w-[448px] max-w-none relative -mt-[4.9rem] -ml-8 lg:ml-0 lg:-mt-[6.6rem] dark:hidden" viewBox="0 0 440 376" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {{-- <svg class="w-[448px] max-w-none relative -mt-[4.9rem] -ml-8 lg:ml-0 lg:-mt-[6.6rem] dark:hidden" viewBox="0 0 440 376" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g class="transition-all delay-300 translate-y-0 opacity-100 duration-750 starting:opacity-0 starting:translate-y-4">
                             <path d="M188.263 355.73L188.595 355.73C195.441 348.845 205.766 339.761 219.569 328.477C232.93 317.193 242.978 308.205 249.714 301.511C256.34 294.626 260.867 287.358 263.296 279.708C265.725 272.058 264.565 264.121 259.816 255.896C254.516 246.716 247.062 239.352 237.454 233.805C227.957 228.067 217.908 225.198 207.307 225.198C196.927 225.197 190.136 227.97 186.934 233.516C183.621 238.872 184.726 246.331 190.247 255.894L125.647 255.891C116.371 239.825 112.395 225.481 113.72 212.858C115.265 200.235 121.559 190.481 132.602 183.596C143.754 176.52 158.607 172.982 177.159 172.983C196.594 172.984 215.863 176.523 234.968 183.6C253.961 190.486 271.299 200.241 286.98 212.864C302.661 225.488 315.14 239.833 324.416 255.899C333.03 270.817 336.841 283.918 335.847 295.203C335.075 306.487 331.376 316.336 324.75 324.751C318.346 333.167 308.408 343.494 294.936 355.734L377.094 355.737L405.917 405.656L217.087 405.649L188.263 355.73Z" fill="black" />
                             <path d="M9.11884 226.339L-13.7396 226.338L-42.7286 176.132L43.0733 176.135L175.595 405.649L112.651 405.647L9.11884 226.339Z" fill="black" />
@@ -197,10 +197,10 @@
                             <path d="M67.41 125.402L44.5515 125.401L15.5625 75.1953L101.364 75.1985L233.886 304.712L170.942 304.71L67.41 125.402Z" fill="#F0ACB8" />
                             <path d="M67.41 125.402L44.5515 125.401L15.5625 75.1953L101.364 75.1985L233.886 304.712L170.942 304.71L67.41 125.402Z" stroke="#1B1B18" stroke-width="1" />
                         </g>
-                    </svg>
+                    </svg> --}} 
 
                     {{-- Dark Mode 12 SVG --}}
-                    <svg class="w-[448px] max-w-none relative -mt-[4.9rem] -ml-8 lg:ml-0 lg:-mt-[6.6rem] hidden dark:block" viewBox="0 0 440 376" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {{-- <svg class="w-[448px] max-w-none relative -mt-[4.9rem] -ml-8 lg:ml-0 lg:-mt-[6.6rem] hidden dark:block" viewBox="0 0 440 376" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g class="transition-all delay-300 translate-y-0 opacity-100 duration-750 starting:opacity-0 starting:translate-y-4">
                             <path d="M188.263 355.73L188.595 355.73C195.441 348.845 205.766 339.761 219.569 328.477C232.93 317.193 242.978 308.205 249.714 301.511C256.34 294.626 260.867 287.358 263.296 279.708C265.725 272.058 264.565 264.121 259.816 255.896C254.516 246.716 247.062 239.352 237.454 233.805C227.957 228.067 217.908 225.198 207.307 225.198C196.927 225.197 190.136 227.97 186.934 233.516C183.621 238.872 184.726 246.331 190.247 255.894L125.647 255.891C116.371 239.825 112.395 225.481 113.72 212.858C115.265 200.235 121.559 190.481 132.602 183.596C143.754 176.52 158.607 172.982 177.159 172.983C196.594 172.984 215.863 176.523 234.968 183.6C253.961 190.486 271.299 200.241 286.98 212.864C302.661 225.488 315.14 239.833 324.416 255.899C333.03 270.817 336.841 283.918 335.847 295.203C335.075 306.487 331.376 316.336 324.75 324.751C318.346 333.167 308.408 343.494 294.936 355.734L377.094 355.737L405.917 405.656L217.087 405.649L188.263 355.73Z" fill="black"/>
                             <path d="M9.11884 226.339L-13.7396 226.338L-42.7286 176.132L43.0733 176.135L175.595 405.649L112.651 405.647L9.11884 226.339Z" fill="black"/>
@@ -273,5 +273,267 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+    </body>
+</html> --}}
+
+
+<!DOCTYPE html>
+<html lang="español">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Inicio - Natural Medy</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <!-- Estilos personalizados -->
+        <style>
+            /* Basic */
+            body {
+                font-family: "Poppins", sans-serif;
+                height: 100vh;
+                background: #fff;
+            }
+            
+            .wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+            
+            /* Form Styles */
+            #formContent {
+                -webkit-border-radius: 10px 10px 10px 10px;
+                border-radius: 10px 10px 10px 10px;
+                background: #fff;
+                padding: 30px;
+                width: 20%;
+                max-width: 450px;
+                position: relative;
+                padding: 0px;
+                -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+                box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+                text-align: center;
+            }
+            
+            #formFooter {
+                background-color: #f6f6f6;
+                border-top: 1px solid #dce8f1;
+                padding: 25px;
+                text-align: center;
+                -webkit-border-radius: 0 0 10px 10px;
+                border-radius: 0 0 10px 10px;
+            }
+            
+            /* Tabs */
+            h2.inactive {
+                color: #cccccc;
+            }
+            
+            h2.active {
+                color: #0d0d0d;
+                border-bottom: 2px solid #5fbae9;
+            }
+            
+            /* Animaciones */
+            .fadeInDown {
+                -webkit-animation-name: fadeInDown;
+                animation-name: fadeInDown;
+                -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+            
+            @-webkit-keyframes fadeInDown {
+                0% {
+                    opacity: 0;
+                    -webkit-transform: translate3d(0, -100%, 0);
+                    transform: translate3d(0, -100%, 0);
+                }
+                100% {
+                    opacity: 1;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+            
+            @keyframes fadeInDown {
+                0% {
+                    opacity: 0;
+                    -webkit-transform: translate3d(0, -100%, 0);
+                    transform: translate3d(0, -100%, 0);
+                }
+                100% {
+                    opacity: 1;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+            
+            /* Simple CSS3 Fade-in Animation */
+            @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+            @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+            @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+            
+            .fadeIn {
+                opacity:0;
+                -webkit-animation:fadeIn ease-in 1;
+                -moz-animation:fadeIn ease-in 1;
+                animation:fadeIn ease-in 1;
+            
+                -webkit-animation-fill-mode:forwards;
+                -moz-animation-fill-mode:forwards;
+                animation-fill-mode:forwards;
+            
+                -webkit-animation-duration:1s;
+                -moz-animation-duration:1s;
+                animation-duration:1s;
+            }
+            
+            .fadeIn.first {
+                -webkit-animation-delay: 0.4s;
+                -moz-animation-delay: 0.4s;
+                animation-delay: 0.4s;
+            }
+            
+            .fadeIn.second {
+                -webkit-animation-delay: 0.6s;
+                -moz-animation-delay: 0.6s;
+                animation-delay: 0.6s;
+            }
+            
+            .fadeIn.third {
+                -webkit-animation-delay: 0.8s;
+                -moz-animation-delay: 0.8s;
+                animation-delay: 0.8s;
+            }
+            
+            .fadeIn.fourth {
+                -webkit-animation-delay: 1s;
+                -moz-animation-delay: 1s;
+                animation-delay: 1s;
+            }
+            
+            /* Form Elements */
+            input[type=text], input[type=password] {
+                background-color: #f6f6f6;
+                border: none;
+                color: #0d0d0d;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 5px;
+                width: 85%;
+                border: 2px solid #f6f6f6;
+                -webkit-transition: all 0.5s ease-in-out;
+                -moz-transition: all 0.5s ease-in-out;
+                -ms-transition: all 0.5s ease-in-out;
+                -o-transition: all 0.5s ease-in-out;
+                transition: all 0.5s ease-in-out;
+                -webkit-border-radius: 5px 5px 5px 5px;
+                border-radius: 5px 5px 5px 5px;
+            }
+            
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: #fff;
+                border-bottom: 2px solid #5fbae9;
+            }
+            
+            input[type=text]:placeholder, input[type=password]:placeholder {
+                color: #cccccc;
+            }
+            
+            input[type=submit] {
+                background-color: #56baed;
+                border: none;
+                color: white;
+                padding: 15px 80px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                text-transform: uppercase;
+                font-size: 13px;
+                -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+                box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+                -webkit-border-radius: 5px 5px 5px 5px;
+                border-radius: 5px 5px 5px 5px;
+                margin: 5px 20px 40px 20px;
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -ms-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+            
+            input[type=submit]:hover {
+                background-color: #39ace7;
+            }
+            
+            input[type=submit]:active {
+                -moz-transform: scale(0.95);
+                -webkit-transform: scale(0.95);
+                -o-transform: scale(0.95);
+                -ms-transform: scale(0.95);
+                transform: scale(0.95);
+            }
+            
+            /* Links */
+            .underlineHover {
+                color: #0d0d0d;
+                text-decoration: none;
+                display: inline-block;
+                position: relative;
+            }
+            
+            .underlineHover:after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                transform: scaleX(0);
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: #56baed;
+                transform-origin: bottom right;
+                transition: transform 0.25s ease-out;
+            }
+            
+            .underlineHover:hover:after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+            
+            /* Icono */
+            #icon {
+                width: 60%;
+                padding: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="https://acortar.link/YmnSBB" id="icon" alt="User Icon" />
+                    <h3>Registra tus Datos</h3>
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
+                    <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
+                    <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
+                </form>
+            </div>
+        </div>
     </body>
 </html>
