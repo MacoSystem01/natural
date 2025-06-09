@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Building2, ClipboardList, FileText, Folder, Gauge, Workflow } from 'lucide-react';
+import { Building2, ClipboardList, FileText, Folder, Gauge, Users, Workflow } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -16,6 +16,10 @@ const mainNavItems: NavItem[] = [
         title: 'Areas',
         href: '/areas',
         icon: Building2,
+    },{
+        title: 'Usuarios',
+        href: '/usuarios',
+        icon: Users,
     },{
         title: 'Procesos',
         href: '/procesos',
@@ -48,14 +52,9 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+        title: 'Repositorio',
+        href: '',
         icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
     },
 ];
 

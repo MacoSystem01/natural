@@ -44,6 +44,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', 'index');
         });
 
+        
+    Route::controller(App\Http\Controllers\UsuariosController::class)
+        ->prefix('usuarios')
+        ->group( function(){
+            Route::get('/', 'index');
+        });
 });
 
 require __DIR__.'/settings.php';

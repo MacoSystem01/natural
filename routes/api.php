@@ -25,4 +25,6 @@ Route::middleware(['web', 'verified'])
     
     Route::get('campos/version', [App\Http\Controllers\Api\CamposController::class, 'version'])->name('campos.version');
     Route::apiResource('campos', App\Http\Controllers\Api\CamposController::class);
+
+    Route::apiResource('usuarios', App\Http\Controllers\Api\UsuariosController::class);
 });
