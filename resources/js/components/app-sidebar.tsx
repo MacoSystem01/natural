@@ -14,8 +14,40 @@ const mainNavItems: NavItem[] = [
         icon: Gauge,
     },{
         title: 'Areas',
-        href: '/areas',
         icon: Building2,
+        href: '',
+        children: [
+            {
+                title: 'Bodega',
+                href: '',
+                children: [
+                    {
+                        title: 'Recepción',
+                        href: '/bodega/recepcion',
+                    },
+                    {
+                        title: 'Entrega de Materiales',
+                        href: '/versiones',
+                    },
+                    {
+                        title: 'Adición de Materiales',
+                        href: '/campos',
+                    },
+                    {
+                        title: 'Devolución',
+                        href: '/campos',
+                    }
+                ]
+            },
+            {
+                title: 'Versiones',
+                href: '/versiones',
+            },
+            {
+                title: 'Campos',
+                href: '/campos',
+            }
+        ]
     },{
         title: 'Usuarios',
         href: '/usuarios',

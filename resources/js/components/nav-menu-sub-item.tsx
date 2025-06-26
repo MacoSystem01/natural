@@ -8,13 +8,7 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
     const page = usePage();
 
     return (
-        
-        <Collapsible
-            key={item.title}
-            asChild
-            defaultOpen={item.children?.some((child) => child.title === page.url)}
-            className="group/collasible"
-        >
+        <Collapsible key={item.title} asChild defaultOpen={item.children?.some((child) => child.title === page.url)} className="group/collasible">
             <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip={item.title}>
@@ -25,8 +19,10 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     <SidebarMenuSub>
-                        {item.children?.map((child) => {
-                            return (
+                        {item.children?.map((child) =>
+                            child.children ? (
+                                <NavMenuSubItem key={child.title} item={child} />
+                            ) : (
                                 <SidebarMenuSubItem key={child.title}>
                                     <SidebarMenuSubButton asChild isActive={false}>
                                         <Link href={child.href} prefetch>
@@ -35,8 +31,8 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
                                         </Link>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
-                            );
-                        })}
+                            ),
+                        )}
                     </SidebarMenuSub>
                 </CollapsibleContent>
             </SidebarMenuItem>

@@ -24,6 +24,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', 'index');
         });
 
+
+
+    Route::controller(App\Http\Controllers\FormulariosController::class)
+        ->prefix('bodega')
+        ->group( function(){
+            Route::controller(App\Http\Controllers\Bodega\RecepcionController::class)
+            ->prefix('recepcion')
+            ->group( function(){
+                Route::get('/', 'index');
+            });
+        });
+
+
+
+
+
     Route::controller(App\Http\Controllers\FormulariosController::class)
         ->prefix('formularios')
         ->group( function(){
