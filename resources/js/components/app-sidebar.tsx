@@ -32,12 +32,17 @@ const mainNavItems: NavItem[] = [
                         href: '/bodega/recepcion',
                         children: [
                             {
-                                title: 'subproceso 1',
+                                title: 'Materia Prima',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-1',
                             },
                             {
-                                title: 'subproceso 2',
+                                title: 'Material de Envase',
+                                icon: Check,
+                                href: '/bodega/1/subproceso-2',
+                            },
+                            {
+                                title: 'Material de Empaque',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-2',
                             }
@@ -49,15 +54,10 @@ const mainNavItems: NavItem[] = [
                         href: '/campos',
                         children: [
                             {
-                                title: 'subproceso 1',
+                                title: 'Materia Prima, Material de Envase o Empaque',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-1',
                             },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-2',
-                            }
                         ]
                     },
                     {
@@ -66,14 +66,19 @@ const mainNavItems: NavItem[] = [
                         href: '/versiones', 
                         children: [
                             {
-                                title: 'subproceso 1',
+                                title: 'Materias Prima',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-1',
                             },
                             {
-                                title: 'subproceso 2',
+                                title: 'Material de Envase',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-2',
+                            },
+                            {
+                                title: 'Material de Empaque',
+                                icon: Check,
+                                href: '/bodega/1/subproceso-1',
                             }
                         ]
                     },
@@ -83,14 +88,19 @@ const mainNavItems: NavItem[] = [
                         href: '/campos',
                         children: [
                             {
-                                title: 'subproceso 1',
+                                title: 'Materias Prima',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-1',
                             },
                             {
-                                title: 'subproceso 2',
+                                title: 'Material de Envase',
                                 icon: Check,
                                 href: '/bodega/1/subproceso-2',
+                            },
+                            {
+                                title: 'Material de Empaque',
+                                icon: Check,
+                                href: '/bodega/1/subproceso-1',
                             }
                         ]
                     }
