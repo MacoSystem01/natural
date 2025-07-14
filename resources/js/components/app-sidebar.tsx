@@ -1,12 +1,11 @@
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Check, Factory, FileText, Folder, FormInput, History, House, LayoutGrid, Package, ShieldCheck, Users } from 'lucide-react';
+import { Check, Factory, FileText, FormInput, History, House, LayoutGrid, Package, ShieldCheck, Users } from 'lucide-react';
 import AppLogo from './app-logo';
-
 
 const mainNavItems: NavItem[] = [
     {
@@ -279,11 +278,11 @@ const mainNavItems: NavItem[] = [
 ];
 
 const footerNavItems: NavItem[] = [
-    {
-        title: 'Repositorio',
-        href: '',
-        icon: Folder,
-    },
+    // {
+    //     title: 'Repositorio',
+    //     href: '',
+    //     icon: Folder,
+    // },
 ];
 
 export function AppSidebar() {
