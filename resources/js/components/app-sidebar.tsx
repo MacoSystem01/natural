@@ -23,19 +23,43 @@ const mainNavItems: NavItem[] = [
                 children: [
                     {
                         title: 'Recepción',
+                        href: '',
+                        children: [
+                            {
+                                title: 'Subproceso 1',
+                                href:'/bodega/recepcion'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Salida de Bodega por Adiciones',
                         href: '/bodega/recepcion',
+                        children: [
+                            {
+                                title: 'Subproceso 1',
+                                href:''
+                            }
+                        ]
                     },
                     {
                         title: 'Entrega de Materiales',
                         href: '/versiones',
-                    },
-                    {
-                        title: 'Adición de Materiales',
-                        href: '/campos',
+                        children: [
+                            {
+                                title: 'Subproceso 1',
+                                href:''
+                            }
+                        ]
                     },
                     {
                         title: 'Devolución',
                         href: '/campos',
+                        children: [
+                            {
+                                title: 'Subproceso 1',
+                                href:''
+                            }
+                        ]
                     }
                 ]
             },
