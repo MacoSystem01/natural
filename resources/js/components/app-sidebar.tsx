@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Check, Factory, FileText, FormInput, History, House, LayoutGrid, Package, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRightCircle, Check, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -13,12 +13,13 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: House,
     },{
-        title: 'Usuarios',
+        title: 'Usuario',
         href: '/usuarios',
-        icon: Users,
-    },{
+        icon: User,
+    },
+    {
         title: 'Areas',
-        icon: LayoutGrid,
+        icon: Folders,
         href: '',
         children: [
             {
@@ -28,82 +29,24 @@ const mainNavItems: NavItem[] = [
                 children: [
                     {
                         title: 'Recepción',
-                        icon: Check,
+                        icon: Inbox,
                         href: '/bodega/recepcion',
-                        children: [
-                            {
-                                title: 'Materia Prima',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-1',
-                            },
-                            {
-                                title: 'Material de Envase',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-2',
-                            },
-                            {
-                                title: 'Material de Empaque',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-2',
-                            }
-                        ]
                     },
                     {
-                        title: 'Salida de Bodega por Adicciones',
-                        icon: Check,
-                        href: '/campos',
-                        children: [
-                            {
-                                title: 'Materia Prima, Material de Envase o Empaque',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-1',
-                            },
-                        ]
+                        title: 'Entrega de Material',
+                        icon: Upload,
+                        href: '/bodega/recepcion',
                     },
                     {
-                        title: 'Entrega de Materiales',
-                        icon: Check,
-                        href: '/versiones', 
-                        children: [
-                            {
-                                title: 'Materias Prima',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-1',
-                            },
-                            {
-                                title: 'Material de Envase',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-2',
-                            },
-                            {
-                                title: 'Material de Empaque',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-1',
-                            }
-                        ]
+                        title: 'Salida de Bodega por Adisión',
+                        icon: ArrowRightCircle,
+                        href: '/bodega/recepcion',
                     },
                     {
-                        title: 'Devolución',
-                        icon: Check,
-                        href: '/campos',
-                        children: [
-                            {
-                                title: 'Materias Prima',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-1',
-                            },
-                            {
-                                title: 'Material de Envase',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-2',
-                            },
-                            {
-                                title: 'Material de Empaque',
-                                icon: Check,
-                                href: '/bodega/1/subproceso-1',
-                            }
-                        ]
-                    }
+                        title: 'Ingreso a Bodega por Devolusión',
+                        icon: CornerDownLeft,
+                        href: '/bodega/recepcion',
+                    },
                 ]
             },
             {
@@ -112,72 +55,9 @@ const mainNavItems: NavItem[] = [
                 href: '',
                 children: [
                     {
-                        title: 'proceso 1',
+                        title: 'subproceso 1',
                         icon: Check,
-                        href: '/produccion/1',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-2',
-                            }
-                        ]
-                    },
-                    {
-                        title: 'proceso 2',
-                        icon: Check,
-                        href: '/produccion/2',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-2',
-                            }
-                        ]
-                    },
-                    {
-                        title: 'proceso 3',
-                        icon: Check,
-                        href: '/produccion/3',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-2',
-                            }
-                        ] 
-                    },
-                    {
-                        title: 'proceso 4',
-                        icon: Check,
-                        href: '/produccion/4',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/produccion/1/subproceso-2',
-                            }
-                        ]
+                        href: '/produccion/1/subproceso-1',
                     }
                 ]
             },
@@ -187,72 +67,9 @@ const mainNavItems: NavItem[] = [
                 href: '',
                 children: [
                     {
-                        title: 'proceso 1',
+                        title: 'subproceso 1',
                         icon: Check,
-                        href: '/calidad/1',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-2',
-                            }
-                        ]
-                    },
-                    {
-                        title: 'proceso 2',
-                        icon: Check,
-                        href: '/calidad/2',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-2',
-                            }
-                        ]
-                    },
-                    {
-                        title: 'proceso 3',
-                        icon: Check,
-                        href: '/calidad/3',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-2',
-                            }
-                        ]
-                    },
-                    {
-                        title: 'proceso 4',
-                        icon: Check,
-                        href: '/calidad/4',
-                        children: [
-                            {
-                                title: 'subproceso 1',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-1',
-                            },
-                            {
-                                title: 'subproceso 2',
-                                icon: Check,
-                                href: '/calidad/1/subproceso-2',
-                            }
-                        ]
+                        href: '/calidad/1/subproceso-1',
                     }
                 ]
             },
@@ -276,15 +93,8 @@ const mainNavItems: NavItem[] = [
         ]
     },
 ];
-
-const footerNavItems: NavItem[] = [
-    // {
-    //     title: 'Repositorio',
-    //     href: '',
-    //     icon: Folder,
-    // },
-];
-
+ 
+const footerNavItems: NavItem[] = [];
 export function AppSidebar() {
     return (
         <Sidebar collapsible="icon" variant="inset">

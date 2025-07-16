@@ -47,7 +47,7 @@ export default function Welcome() {
                                 className="w-[300px] h-auto object-contain"
                             />
                             <p className="mt-4 text-xl font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">
-                                Sistema Autonomo Natural Medy
+                                Tecnología inteligente al servicio de Natural Medy.
                             </p>
                         </div>
                     </main>
