@@ -35,17 +35,17 @@ const mainNavItems: NavItem[] = [
                     {
                         title: 'Entrega de Material',
                         icon: Upload,
-                        href: '/bodega/recepcion',
+                        href: '/bodega/entrega',
                     },
                     {
-                        title: 'Salida de Bodega por Adisión',
+                        title: 'Salida de Bodega por Adición',
                         icon: ArrowRightCircle,
-                        href: '/bodega/recepcion',
+                        href: '/bodega/salida',
                     },
                     {
-                        title: 'Ingreso a Bodega por Devolusión',
+                        title: 'Ingreso a Bodega por Devolución',
                         icon: CornerDownLeft,
-                        href: '/bodega/recepcion',
+                        href: '/bodega/devolucion',
                     },
                 ]
             },

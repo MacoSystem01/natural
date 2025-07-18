@@ -12,52 +12,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::controller(App\Http\Controllers\AreasController::class)
-        ->prefix('areas')
-        ->group( function(){
-            Route::get('/', 'index');
-        });
 
-    Route::controller(App\Http\Controllers\ProcesosController::class)
-        ->prefix('procesos')
-        ->group( function(){
-            Route::get('/', 'index');
-        });
-
-
-
-    Route::controller(App\Http\Controllers\FormulariosController::class)
+    Route::controller(App\Http\Controllers\Bodega\RecepcionController::class)
         ->prefix('bodega')
         ->group( function(){
-            Route::controller(App\Http\Controllers\Bodega\RecepcionController::class)
-            ->prefix('recepcion')
+            Route::prefix('recepcion')
             ->group( function(){
-                Route::get('/', 'index');
+                Route::get('/', 'recepcion');
+                Route::get('/pdf/{id}', 'descargarPDF')->name('bodega.recepcion.pdf');
             });
-        });
 
-
-
-
-
-    Route::controller(App\Http\Controllers\FormulariosController::class)
-        ->prefix('formularios')
-        ->group( function(){
-            Route::get('/', 'index');
-            Route::get('/{id}/areas', 'areas')->name('formularios.areas');
-            Route::get('/{id}/versiones', 'versiones')->name('formularios.versiones');
-        });
-
-    Route::controller(App\Http\Controllers\VersionesController::class)
-        ->prefix('versiones')
-        ->group( function(){
-            Route::get('/', 'index');
-        });
-
-    Route::controller(App\Http\Controllers\CamposController::class)
-        ->prefix('campos')
-        ->group( function(){
-            Route::get('/', 'index');
+            Route::get('/entrega', 'entrega');
+            Route::get('/salida', 'salida');
+            Route::get('/devolucion', 'devolucion');
         });
 
         

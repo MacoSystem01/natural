@@ -7,8 +7,21 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collap
 export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
     const page = usePage();
 
+    const isChildOpen = ( item: NavItem ) => {
+        return false
+        /*
+        console.log(  item.title )
+        if ( item.children?.some((child) => child.href === page.url ) ) {
+            console.log('existe')
+            return true
+        } else {
+            item.children?.forEach( child => isChildOpen( child ) )
+        }
+        */
+    }
+
     return (
-        <Collapsible key={item.title} asChild defaultOpen={item.children?.some((child) => child.title === page.url)} className="group/collasible">
+        <Collapsible key={item.title} asChild defaultOpen={isChildOpen(item)} className="group/collasible">
             <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip={item.title}>
@@ -24,7 +37,7 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
                                 <NavMenuSubItem key={child.title} item={child} />
                             ) : (
                                 <SidebarMenuSubItem key={child.title}>
-                                    <SidebarMenuSubButton asChild isActive={false}>
+                                    <SidebarMenuSubButton asChild isActive={child.href == page.url}>
                                         <Link href={child.href} prefetch>
                                             {child.icon && <child.icon />}
                                             <span>{child.title}</span>
