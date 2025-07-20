@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { ArrowRightCircle, Check, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User } from 'lucide-react';
+import { ArrowRightCircle, Check, Cog, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -16,10 +16,14 @@ const mainNavItems: NavItem[] = [
         title: 'Usuario',
         href: '/usuarios',
         icon: User,
+    },{
+        title: 'Areas',
+        href: '/areas',
+        icon: Folders,
     },
     {
-        title: 'Areas',
-        icon: Folders,
+        title: 'Procesos',
+        icon: Cog,
         href: '',
         children: [
             {

@@ -35,7 +35,6 @@ type ThisForm = {
     cantidad_contenedor: string;
     n_contendor: string;
     unidad_medida: string;
-    valor_conversion: string;
     material: string;
     descripcion: string;
     t_c: string;
@@ -88,7 +87,6 @@ export default function ({ id }: any) {
         cantidad_contenedor: '',
         n_contendor: '',
         unidad_medida: '',
-        valor_conversion: '',
         material: '',
         descripcion: '',
         t_c: '',
@@ -191,7 +189,7 @@ export default function ({ id }: any) {
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">DESCRIPCION</h6>
+                        <h6 className="mb-5 font-bold text-center">DESCRIPCION lista de materiales</h6>
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
                             <div>
                                 <Label htmlFor="codigo"> CODIGO </Label>
@@ -342,7 +340,7 @@ export default function ({ id }: any) {
                         <h6 className="mb-5 font-bold text-center">INFORMACION MATERIAL</h6>
                         <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
                             <div>
-                                <Label htmlFor="lote_nmd"> LOTE NMD </Label>
+                                <Label htmlFor="lote_nmd"> LOTE NMD consecutivo </Label>
 
                                 <Input
                                     autoFocus
@@ -402,7 +400,7 @@ export default function ({ id }: any) {
                                 {errors.n_contendor && <p className="mt-1 text-sm text-red-500">{errors.n_contendor}</p>}
                             </div>
                             <div>
-                                <Label htmlFor="unidad_medida"> UNIDAD DE MEDIDA </Label>
+                                <Label htmlFor="unidad_medida"> UNIDAD DE MEDIDA - lista </Label>
 
                                 <Input
                                     autoFocus
@@ -415,21 +413,6 @@ export default function ({ id }: any) {
                                 />
 
                                 {errors.unidad_medida && <p className="mt-1 text-sm text-red-500">{errors.unidad_medida}</p>}
-                            </div>
-                            <div>
-                                <Label htmlFor="valor_conversion"> VALOR DE CONVERSION </Label>
-
-                                <Input
-                                    autoFocus
-                                    id="valor_conversion"
-                                    name="valor_conversion"
-                                    required
-                                    value={data.valor_conversion}
-                                    placeholder="VALOR DE CONVERSION"
-                                    onChange={(e) => setData('valor_conversion', e.target.value)}
-                                />
-
-                                {errors.valor_conversion && <p className="mt-1 text-sm text-red-500">{errors.valor_conversion}</p>}
                             </div>
                         </div>
                     </div>
@@ -915,6 +898,8 @@ export default function ({ id }: any) {
                         </Button>
                     </div>
                 </form>
+
+                aprobar y cerrar formato, o devovler con observación
             </div>
         </AppLayout>
     );

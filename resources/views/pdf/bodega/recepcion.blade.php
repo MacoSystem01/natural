@@ -21,7 +21,7 @@
 </head>
 <body>
 
-    <div class="title">REPORTE DE RECEPCIÓN DE MATERIALES</div>
+    <div class="title">REPORTE DE RECEPCIÓN DE MATERIALES encabezado logo y encabezado</div>
 
     <table class="no-border">
         <tr>

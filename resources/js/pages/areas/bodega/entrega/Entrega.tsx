@@ -68,7 +68,7 @@ export default function ({ id, onReload }: any) {
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
                             <div>
-                                <Label htmlFor="muestra_no"> MUESTRA No </Label>
+                                <Label htmlFor="muestra_no"> MUESTRA No -- solo OP y muestra el formulario correspondiente </Label>
 
                                 <Input
                                     autoFocus

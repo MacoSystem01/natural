@@ -78,14 +78,14 @@ export default function ({ id, onReload }: any) {
                                     name="area"
                                     required
                                     value={data.area}
-                                    placeholder="PROVEEDOR"
+                                    placeholder="DESTINO"
                                     onChange={(e) => setData('area', e.target.value)}
                                 />
 
                                 {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
                             </div>
                             <div>
-                                <Label htmlFor="area"> O.C </Label>
+                                <Label htmlFor="area"> OP </Label>
 
                                 <Input
                                     autoFocus
@@ -93,37 +93,7 @@ export default function ({ id, onReload }: any) {
                                     name="area"
                                     required
                                     value={data.area}
-                                    placeholder="O.C"
-                                    onChange={(e) => setData('area', e.target.value)}
-                                />
-
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
-                            </div>
-                            <div>
-                                <Label htmlFor="area"> OP / LOTE </Label>
-
-                                <Input
-                                    autoFocus
-                                    id="area"
-                                    name="area"
-                                    required
-                                    value={data.area}
-                                    placeholder="LOTE"
-                                    onChange={(e) => setData('area', e.target.value)}
-                                />
-
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
-                            </div>
-                            <div>
-                                <Label htmlFor="area"> REMISIÓN </Label>
-
-                                <Input
-                                    autoFocus
-                                    id="area"
-                                    name="area"
-                                    required
-                                    value={data.area}
-                                    placeholder="REMISIÓN"
+                                    placeholder="OP"
                                     onChange={(e) => setData('area', e.target.value)}
                                 />
 
@@ -137,16 +107,17 @@ export default function ({ id, onReload }: any) {
                             <thead>
                                 <tr className="text-left font-bold">
                                     <th className="w-1/4"> CÓDIGO </th>
+                                    <th className="w-1/4"> DESCRIPCIÓN </th>
                                     <th className="w-1/4"> LOTE </th>
                                     <th className="w-1/4"> CANTIDAD </th>
-                                    <th className="w-1/4"> DESCRIPCIÓN </th>
+                                    <th className="w-1/4"> UNIDAD MEDIDA </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {new Array(6).fill('').map((_, idx) => {
                                     return (
                                         <tr key={idx} className="focus-within:bg-gray-100 hover:bg-gray-100">
-                                            <td className="w-1/4 border-t align-top break-words">
+                                            <td className="p-2 w-1/4 border-t align-top break-words">
                                                 <Input
                                                     autoFocus
                                                     id="area"
@@ -157,7 +128,18 @@ export default function ({ id, onReload }: any) {
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
                                             </td>
-                                            <td className="w-1/4 border-t align-top break-words">
+                                            <td className="p-2 w-1/4 border-t break-words">
+                                                <Input
+                                                    autoFocus
+                                                    id="area"
+                                                    name="area"
+                                                    required
+                                                    value={data.area}
+                                                    placeholder="DESCRIPCIÓN lista de materiales"
+                                                    onChange={(e) => setData('area', e.target.value)}
+                                                />
+                                            </td>
+                                            <td className="p-2 w-1/4 border-t align-top break-words">
                                                 <Input
                                                     autoFocus
                                                     id="area"
@@ -168,7 +150,7 @@ export default function ({ id, onReload }: any) {
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
                                             </td>
-                                            <td className="w-1/4 border-t align-top break-words">
+                                            <td className="p-2 w-1/4 border-t align-top break-words">
                                                 <Input
                                                     autoFocus
                                                     id="area"
@@ -179,18 +161,7 @@ export default function ({ id, onReload }: any) {
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
                                             </td>
-                                            <td className="w-1/4 border-t break-words">
-                                                <Textarea
-                                                    autoFocus
-                                                    id="area"
-                                                    name="area"
-                                                    rows={3}
-                                                    required
-                                                    value={data.area}
-                                                    placeholder="DESCRIPCIÓN"
-                                                    onChange={(e) => setData('area', e.target.value)}
-                                                />
-                                            </td>
+                                            <td className="p-2 w-1/4 border-t align-top break-words"></td>
                                         </tr>
                                     );
                                 })}
@@ -209,7 +180,7 @@ export default function ({ id, onReload }: any) {
                                     name="area"
                                     required
                                     value={data.area}
-                                    placeholder="OBSERVACIONES"
+                                    placeholder="MOTIVO DE SOLICITUD"
                                     onChange={(e) => setData('area', e.target.value)}
                                 />
 
