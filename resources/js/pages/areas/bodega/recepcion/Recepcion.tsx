@@ -841,8 +841,8 @@ export default function ({ id }: any) {
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
                                             autoFocus
-                                            id="area"
-                                            name="area"
+                                            id="descripcion_corresponde_obs"
+                                            name="descripcion_corresponde_obs"
                                             rows={3}
                                             required
                                             value={data.descripcion_corresponde_obs}
