@@ -11,6 +11,7 @@ Route::get('/user', function (Request $request) {
 Route::middleware(['web', 'verified'])
 ->prefix('web')
 ->group(function () {
+    Route::apiResource('areas', App\Http\Controllers\Api\AreasController::class);
     Route::apiResource('usuarios', App\Http\Controllers\Api\UsuariosController::class);
 
     Route::prefix('bodega')

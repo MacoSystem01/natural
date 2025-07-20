@@ -8,11 +8,18 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
 
+    Route::controller(App\Http\Controllers\AreasController::class)
+        ->prefix('areas')
+        ->group( function(){
+            Route::get('/', 'index');
+        });
+    
     Route::controller(App\Http\Controllers\Bodega\RecepcionController::class)
         ->prefix('bodega')
         ->group( function(){
