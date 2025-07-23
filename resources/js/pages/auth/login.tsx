@@ -22,9 +22,9 @@ export default function LoginForm({ canResetPassword }: { canResetPassword?: boo
             <div className="bg-white border border-gray-200 shadow-lg rounded-xl w-full max-w-md text-center overflow-hidden animate-fadeInDown">
                 <div className="p-6">
                     <img
-                        src="/logo.jpeg"
+                        src="/logo.png"
                         alt="Logo"
-                        className="mx-auto w-32 mb-4"
+                        className="mx-auto w-60 mb-4"
                     />
                     <h1 className="text-2xl font-semibold text-black"></h1>
                 </div>

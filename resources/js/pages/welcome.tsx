@@ -42,7 +42,7 @@ export default function Welcome() {
                     <main className="flex w-full max-w-[335px] flex-col-reverse items-center justify-center lg:max-w-4xl lg:flex-row">
                         <div className="flex flex-col items-center">
                             <img
-                                src="/logo.jpeg"
+                                src="/logo.png"
                                 alt="Logo"
                                 className="w-[300px] h-auto object-contain"
                             />
