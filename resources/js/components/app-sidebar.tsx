@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { ArrowRightCircle, Check, Cog, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User } from 'lucide-react';
+import { ArrowRightCircle, Check, Cog, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User, ClipboardList, Tags, FileLock, Clock, Recycle } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -50,6 +50,35 @@ const mainNavItems: NavItem[] = [
                         title: 'Ingreso a Bodega por Devolución',
                         icon: CornerDownLeft,
                         href: '/bodega/devolucion',
+                    },
+                ]
+            },
+            {
+                title: 'Planeación',
+                icon: ClipboardList,
+                href: '',
+                children: [
+                    {
+                        title: 'Emisión de batch record',
+                        icon: Tags,
+                        href: '/bodega/recepcion',
+                    },
+                    {
+                        title: 'Cierre De Batch Record',
+                        icon: FileLock,
+                        href: '',
+                        children: [
+                            {
+                                title: 'Tiempo Improductivo',
+                                icon: Clock,
+                                href: '/bodega/recepcion',
+                            },
+                            {
+                                title: 'Desperdicio',
+                                icon: Recycle,
+                                href: '/bodega/recepcion',
+                            },
+                        ]
                     },
                 ]
             },
