@@ -61,7 +61,7 @@ const mainNavItems: NavItem[] = [
                     {
                         title: 'Emisión de batch record',
                         icon: Tags,
-                        href: '/bodega/recepcion',
+                        href: '/planeacion/',
                     },
                     {
                         title: 'Cierre De Batch Record',
@@ -71,12 +71,12 @@ const mainNavItems: NavItem[] = [
                             {
                                 title: 'Tiempo Improductivo',
                                 icon: Clock,
-                                href: '/bodega/recepcion',
+                                href: '/planeacion/',
                             },
                             {
                                 title: 'Desperdicio',
                                 icon: Recycle,
-                                href: '/bodega/recepcion',
+                                href: '/planeacion/',
                             },
                         ]
                     },
