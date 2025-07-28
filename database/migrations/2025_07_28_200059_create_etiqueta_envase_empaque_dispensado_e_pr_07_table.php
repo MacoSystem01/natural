@@ -11,33 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trabajo_bodega_mee', function (Blueprint $table) {
+        Schema::create('etiqueta_envase_empaque_dispensado__e__p_r_07', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            // FORMULARIO 3
+            $table->string('descripcion');
+            $table->string('codigo');
+            $table->decimal('numero_lote', 10, 2);
             $table->string('producto');
             $table->string('presentacion');
-            $table->string('op');
             $table->string('lote');
-            $table->decimal('tamano_lote', 10, 2);
+            $table->string('op');
             $table->decimal('cantidad', 10, 2);
-            // PRODUCTO
-            $table->string('codigo_empaque');
-            $table->string('materia_empaque');
-            $table->decimal('cant_solicitada_empaque', 10, 2);
-            $table->decimal('cant_entregada_empaque', 10, 2);
-            $table->string('numero_lote_empaque');
-            $table->integer('num_contenedores_empaque');
-            $table->string('verificado_produccion_empaque');
-            // VERIFICACIÓN
+            $table->string('realizado_nombre');
+            $table->timestamp('realizado_fecha');
             $table->string('verificado_nombre');
             $table->timestamp('verificado_fecha');
-            $table->string('entregado_nombre');
-            $table->timestamp('entregado_fecha');
-            $table->string('recibido_nombre');
-            $table->timestamp('recibido_fecha');
             $table->string('observaciones');
+
             // METADATOS
             $table->timestamp('fecha_contenida')->nullable();
             $table->timestamp('aproved_at')->nullable();
@@ -50,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trabajo_bodega_mee');
+        Schema::dropIfExists('etiqueta_envase_empaque_dispensado__e__p_r_07');
     }
 };
