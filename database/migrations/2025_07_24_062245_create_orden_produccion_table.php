@@ -1,0 +1,144 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('orden_produccion', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->string('codigo');
+            $table->string('producto');
+            $table->string('presentacion');
+            $table->string('lote');
+            $table->string('registro_sanitario');
+            $table->string('codigo_barras');
+            $table->string('tamano');
+            $table->string('fecha_vencimiento')->nullable();
+            $table->string('unidades_lote');
+            $table->string('hora_inicio');
+            $table->string('hora_fin');
+            $table->string('numero_lote');
+            $table->string('codigo_materia_prima');
+            $table->string('materia_prima_requerida');
+            $table->string('porcentaje');
+            $table->string('cantidad_estandar');
+            $table->string('unidad');
+            $table->string('fecha_pesaje')->nullable();
+            $table->string('cantidad_pesada');
+            $table->string('pesado_por');
+            $table->string('fecha_verificacion');
+            $table->string('peso_corregido');
+            $table->string('verificado_por');
+            $table->string('fecha_fabricacion');
+            $table->string('numero_sublote');
+            $table->string('hora_inicio');
+            $table->string('hora_fin');
+            $table->string('fabricado_por');
+            $table->string('tarro_uno_peso_neto');
+            $table->string('tarro_dos_peso_neto');
+            $table->string('tarro_tres_peso_neto');
+            $table->string('tarro_cuatro_peso_neto');
+            $table->string('verificado_por');
+            $table->string('observaciones');
+            $table->string('firma_emision_producto');
+            $table->string('fecha_emision_producto');
+            $table->string('firma_revisado_gestion_calidad');
+            $table->string('fecha_revisado_gestion_calidad');
+            $table->string('descargado_inventario_firma');
+            $table->string('descargado_inventario_fecha');
+            $table->string('observaciones_generales');
+            $table->string('numero_lote');
+            $table->string('codigo_materia_prima');
+            $table->string('material_requerido');
+            $table->string('unidad');
+            $table->string('cantidad_lote_estandar');
+            $table->string('fecha');
+            $table->string('cantidad');
+            $table->string('fecha_envasado');
+            $table->string('codigo');
+            $table->string('nombre');
+            $table->string('fecha_envasado');
+            $table->string('codigo_personal');
+            $table->string('nombre_personal');
+            $table->string('cantidad_unidad');
+            $table->string('proceso_acondicionamiento_num_lote');
+            $table->string('proceso_acondicionamiento_codigo_material');
+            $table->string('fecha_acondicionamiento');
+            $table->string('proceso_dispensado_num_lote_material');
+            $table->string('proceso_dispensado_codigo_material');
+            $table->string('proceso_dispensado_material_requerido');
+            $table->string('proceso_dispensado_material_adision_fecha');
+            $table->string('proceso_dispensado_material_adision_cantidad');
+            $table->string('proceso_dispensado_material_devolucion_fecha');
+            $table->string('proceso_dispensado_material_devolucion_cantidad');
+            $table->string('proceso_dispensado_desperdicio');
+            $table->string('proceso_dispensado_motivo_desperdicio');
+            $table->string('proceso_dispensado_porcentaje_rendimiento');
+            $table->string('proceso_dispensado_responsable_dispensado');
+            $table->string('proceso_fabricacion_num_lote_material');
+            $table->string('proceso_fabricacion_codigo_material');
+            $table->string('proceso_fabricacion_material_requerido');
+            $table->string('proceso_fabricacion_material_adision_fecha');
+            $table->string('proceso_fabricacion_material_adision_cantidad');
+            $table->string('proceso_fabricacion_material_devolucion_fecha');
+            $table->string('proceso_fabricacion_material_devolucion_cantidad');
+            $table->string('proceso_fabricacion_desperdicio');
+            $table->string('proceso_fabricacion_motivo_desperdicio');
+            $table->string('proceso_fabricacion_porcentaje_rendimiento');
+            $table->string('proceso_fabricacion_responsable_dispensado');
+            $table->string('proceso_envase_num_lote_material');
+            $table->string('proceso_envase_codigo_material');
+            $table->string('proceso_envase_material_requerido');
+            $table->string('proceso_envase_material_adision_fecha');
+            $table->string('proceso_envase_material_adision_cantidad');
+            $table->string('proceso_envase_material_devolucion_fecha');
+            $table->string('proceso_envase_material_devolucion_cantidad');
+            $table->string('proceso_envase_desperdicio');
+            $table->string('proceso_envase_motivo_desperdicio');
+            $table->string('proceso_envase_porcentaje_rendimiento');
+            $table->string('proceso_envase_responsable_dispensado');
+            $table->string('proceso_adicionamiento_num_lote_material');
+            $table->string('proceso_adicionamiento_codigo_material');
+            $table->string('proceso_adicionamiento_material_requerido');
+            $table->string('proceso_adicionamiento_material_adision_fecha');
+            $table->string('proceso_adicionamiento_material_adision_cantidad');
+            $table->string('proceso_adicionamiento_material_devolucion_fecha');
+            $table->string('proceso_adicionamiento_material_devolucion_cantidad');
+            $table->string('proceso_adicionamiento_desperdicio');
+            $table->string('proceso_adicionamiento_motivo_desperdicio');
+            $table->string('proceso_adicionamiento_porcentaje_rendimiento');
+            $table->string('proceso_adicionamiento_responsable_dispensado');
+            $table->string('un_embalaje');
+            $table->string('numeros_caja_completa');
+            $table->string('saldo_un');
+            $table->string('entrega_almacen');
+            $table->string('entrega_calidad');
+            $table->string('total_acondicionada');
+            $table->string('total_envasada');
+            $table->string('desperdicio_un');
+            $table->string('porcentaje_acondicionada_teorica');
+            $table->string('jefe_produccion_fecha');
+            $table->string('jefe_produccion_firma');
+            $table->string('proceso');
+            $table->string('codigo_parada');
+            $table->string('descripcion_parada');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('orden_produccion');
+    }
+};
