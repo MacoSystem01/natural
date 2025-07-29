@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('f_pr_09_bodega_mp', function (Blueprint $table) {
+        Schema::create('f_pr_10_bodega_me', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('cantidad_un');
             // REGISTRO
             $table->string('codigo');
-            $table->string('materia_prima');
+            $table->string('material_envase');
             $table->decimal('cant_solicitada');
             $table->decimal('cantidad_entregada');
             $table->string('numero_lote');
@@ -50,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('f_pr_09_bodega_mp');
+        Schema::dropIfExists('f_pr_10_bodega_me');
     }
 };

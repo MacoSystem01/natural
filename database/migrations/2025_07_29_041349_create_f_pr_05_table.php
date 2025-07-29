@@ -29,9 +29,9 @@ return new class extends Migration
             $table->timestamp('fecha')->nullable();
             $table->string('revisado_por');
             $table->timestamp('revisado_fecha')->nullable();
-            $table->foreign('aprobado_por')->references('id')->on('users');
+            $table->string('aprobado_por');
             $table->string('aprobado_fecha')->nullable();
-            $table->foreign('liberado_por')->references('id')->on('users');
+            $table->string('liberado_por');
             $table->string('liberado_fecha')->nullable();
 
             // METADATOS
