@@ -42,6 +42,10 @@ return new class extends Migration
             $table->timestamp('hora_fin_envasado')->nullable();
             $table->string('cantidad_un');
             $table->string('observaciones_generales');
+            // METADATOS
+            $table->timestamp('fecha_contenida')->nullable();
+            $table->timestamp('aproved_at')->nullable();
+            $table->softDeletes();
 
         });
     }
