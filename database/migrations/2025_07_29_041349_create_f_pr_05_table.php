@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('codgio');
+            $table->string('codigo');
             $table->string('producto');
             $table->string('presentacion');
             $table->string('op');
@@ -29,9 +29,9 @@ return new class extends Migration
             $table->timestamp('fecha')->nullable();
             $table->string('revisado_por');
             $table->timestamp('revisado_fecha')->nullable();
-            $table->string('aprobado_por');
+            $table->foreign('aprobado_por')->references('id')->on('users');
             $table->string('aprobado_fecha')->nullable();
-            $table->string('liberado_por');
+            $table->foreign('liberado_por')->references('id')->on('users');
             $table->string('liberado_fecha')->nullable();
 
             // METADATOS

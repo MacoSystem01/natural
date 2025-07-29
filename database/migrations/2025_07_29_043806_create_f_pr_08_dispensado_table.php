@@ -39,7 +39,24 @@ return new class extends Migration
             $table->timestamp('fecha_verificacion')->nullable();
             $table->decimal('peso_corregido', 10, 2);
             $table->string('verificado_por');
-
+            // FABRICADO
+            $table->timestamp('fecha_fabricacion')->nullable();
+            $table->integer('numero_sublote');
+            $table->timestamp('hora_inicio_fabricado')->nullable();
+            $table->timestamp('hora_fin_fabricado')->nullable();
+            $table->string('fabricado_por');
+            $table->decimal('peso_neto_tarro_uno', 10, 2);
+            $table->decimal('peso_neto_tarro_dos', 10, 2);
+            $table->decimal('peso_neto_tarro_tres', 10, 2);
+            $table->decimal('peso_neto_tarro_cuatro', 10, 2);
+            $table->string('verificado_por_fabricado');
+            $table->string('observaciones_fabricado');
+            $table->string('produccion_emitido_por');
+            $table->timestamp('produccion_fecha')->nullable();
+            $table->string('gestion_calidad_por');
+            $table->timestamp('gestion_calidad_fecha')->nullable();
+            $table->string('descargo_inventario_por');
+            $table->timestamp('descargo_inventario_fecha')->nullable();
 
             // METADATOS
             $table->timestamp('fecha_contenida')->nullable();
