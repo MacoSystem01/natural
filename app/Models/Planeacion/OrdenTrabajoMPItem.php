@@ -20,7 +20,7 @@ class OrdenTrabajoMPItem extends Model
     ];
 
     public function orden()
-    {
-        return $this->belongsTo(OrdenTrabajoMP::class, 'orden_id');
-    }
+        {
+            return $this->belongsTo(FPr09BodegaMP::class, 'orden_id');
+        }
 }

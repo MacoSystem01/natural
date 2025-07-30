@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 
-class OrdenTrabajoMP extends Model
+class FPr09BodegaMP extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'orden_trabajo_mp';
+    protected $table = 'f_pr_09_bodega_mp';
 
     protected $fillable = [
         'producto',
@@ -29,11 +29,13 @@ class OrdenTrabajoMP extends Model
         'created_by'
     ];
 
+    // Relación con los ítems de materia prima (orden_trabajo_mp_items)
     public function items()
     {
         return $this->hasMany(OrdenTrabajoMPItem::class, 'orden_id');
     }
 
+    // Relación con el usuario que creó la orden
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');
