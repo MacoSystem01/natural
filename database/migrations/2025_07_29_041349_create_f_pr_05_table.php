@@ -13,30 +13,32 @@ return new class extends Migration
     {
         Schema::create('f_pr_05', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('materiales_id')->nullable()->constrained('materiales');
+            $table->foreignId('created_by')->nullable()->constrained('users');
+            $table->foreignId('updated_by')->nullable()->constrained('users');
+            $table->foreignId('checked_by')->nullable()->constrained('users');
+            $table->foreignId('approved_by')->nullable()->constrained('users');
+            $table->foreignId('free_by')->nullable()->constrained('users');
 
             $table->string('codigo');
-            $table->string('producto');
             $table->string('presentacion');
             $table->string('op');
-            $table->decimal('tamaño', 10, 2);
+            $table->decimal('tamano', 10, 2);
             $table->decimal('cantidad', 10, 2);
             $table->string('lote');
             $table->timestamp('fecha_vencimiento')->nullable();
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_finalizado')->nullable();
+
             $table->decimal('cant_producida', 10, 2);
             $table->timestamp('fecha')->nullable();
-            $table->string('revisado_por');
-            $table->timestamp('revisado_fecha')->nullable();
-            $table->string('aprobado_por');
-            $table->string('aprobado_fecha')->nullable();
-            $table->string('liberado_por');
-            $table->string('liberado_fecha')->nullable();
 
             // METADATOS
-            $table->timestamp('fecha_contenida')->nullable();
-            $table->timestamp('aproved_at')->nullable();
+            $table->timestamp('checked_at')->nullable();
+            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('free_at')->nullable();
+
+            $table->timestamps();
             $table->softDeletes();
         });
     }

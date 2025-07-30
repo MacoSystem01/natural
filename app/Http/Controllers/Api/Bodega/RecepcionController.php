@@ -54,7 +54,11 @@ class RecepcionController extends Controller
             'area' => 'required|string|max:255',
         ]);*/
 
-        $recepcion->update( $request->all() );
+        $data = $request->all();
+        $data['updated_by'] = \Auth::user()->id;
+
+        $recepcion->update( $data );
+
         return response()->json(['recepcion' => $recepcion]);
         // return  new AreasResource($area);
     }

@@ -39,6 +39,7 @@ return new class extends Migration
             $table->boolean('certificado_analisis');
             $table->boolean('almacenar_especial');
             $table->text('observaciones')->nullable();
+            
             $table->boolean('contenedor_identificado');
             $table->text('contenedor_identificado_obs')->nullable();
             $table->boolean('contendor_sucio');
