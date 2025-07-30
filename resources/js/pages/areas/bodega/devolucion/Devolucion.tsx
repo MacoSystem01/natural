@@ -1,12 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
-import { FormEventHandler, useState } from 'react';
+import axios from 'axios';
+import { LoaderCircle, PlusIcon, Trash2 } from 'lucide-react';
+import { FormEventHandler, useEffect, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,28 +17,60 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+type Material = {
+    material: string;
+    lote: string;
+    cantidad: string;
+    unidades_id: string;
+};
+
 type ThisForm = {
-    proveedor: string;
     area: string;
-    oc: string;
+    op: string;
+    producto: string;
+    proveedor: string;
     lote: string;
     remision: string;
-    materiales: [];
+    materiales: Material[];
     observaciones: string;
 };
 
-export default function ({ id, onReload }: any) {
+export default function ({ id, materiales, unidades }: any) {
     const { data, setData, post, put, processing, errors, reset } = useForm<Required<ThisForm>>({
-        proveedor: '',
         area: '',
-        oc: '',
+        op: '',
+        producto: '',
+        proveedor: '',
         lote: '',
         remision: '',
-        materiales: [],
+        materiales: [
+            {
+                material: '',
+                lote: '',
+                cantidad: '',
+                unidades_id: '',
+            },
+        ],
         observaciones: '',
     });
 
     const [resetKey, setResetKey] = useState(Date.now());
+
+    const onAddMaterial = () => {
+        const material: Material = {
+            material: '',
+            lote: '',
+            unidades_id: '',
+            cantidad: '',
+        }
+        setData('materiales', [...data.materiales, material] )
+    }
+
+    const onRemoveMaterial = (idx: number) => {
+        const lista = [...data.materiales]
+        lista.splice(idx, 1)
+        setData('materiales', [...lista]);
+    }
 
     const submit: FormEventHandler = async (e) => {
         e.preventDefault();
@@ -44,7 +78,6 @@ export default function ({ id, onReload }: any) {
         const options = {
             onSuccess: () => {
                 reset();
-                onReload();
             },
             onError: (errors: any) => {
                 console.log(errors);
@@ -60,6 +93,23 @@ export default function ({ id, onReload }: any) {
             post(route('areas.store'), options);
         }
     };
+
+    useEffect(() => {
+        const getRecepcion = async (op: any) => {
+            if (!op) return;
+
+            const {
+                data: { recepcion },
+            } = await axios.post(route(`bodega.recepcion.find`, { op }));
+            if (recepcion) {
+                setData('producto', recepcion.producto?.codigo + '-' + recepcion.producto?.descripcion);
+            }
+        };
+
+        setTimeout(() => {
+            getRecepcion(data.op);
+        }, 500);
+    }, [data.op]);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -89,72 +139,80 @@ export default function ({ id, onReload }: any) {
 
                                 <Input
                                     autoFocus
-                                    id="area"
-                                    name="area"
+                                    id="op"
+                                    name="op"
                                     required
-                                    value={data.area}
+                                    value={data.op}
                                     placeholder="OP"
-                                    onChange={(e) => setData('area', e.target.value)}
+                                    onChange={(e) => setData('op', e.target.value)}
                                 />
 
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
+                                {errors.op && <p className="mt-1 text-sm text-red-500">{errors.op}</p>}
                             </div>
                             <div>
-                                <Label htmlFor="area"> PRODCUTO - viene de la OP </Label>
+                                <Label htmlFor="area"> PRODUCTO </Label>
 
                                 <Input
+                                    readOnly
                                     autoFocus
-                                    id="area"
-                                    name="area"
+                                    id="producto"
+                                    name="producto"
                                     required
-                                    value={data.area}
-                                    placeholder="PRODCUTO"
-                                    onChange={(e) => setData('area', e.target.value)}
+                                    value={data.producto}
+                                    placeholder="PRODUCTO"
+                                    onChange={(e) => setData('producto', e.target.value)}
                                 />
 
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
+                                {errors.producto && <p className="mt-1 text-sm text-red-500">{errors.producto}</p>}
                             </div>
                         </div>
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                    <table className="w-full table-fixed whitespace-nowrap">
+                        <div className="mb-4 flex items-center justify-end">
+                            <Button type='button' onClick={onAddMaterial}>
+                                <PlusIcon />
+                            </Button>
+                        </div>
+
+                        <table className="w-full table-fixed whitespace-nowrap">
                             <thead>
                                 <tr className="text-left font-bold">
-                                    <th className="w-1/4"> CÓDIGO </th>
-                                    <th className="w-1/4"> DESCRIPCIÓN </th>
+                                <th className="w-1/4"> MATERIAL </th>
                                     <th className="w-1/4"> LOTE </th>
-                                    <th className="w-1/4"> CANTIDAD </th>
+                                    <th className="w-1/5"> CANTIDAD </th>
                                     <th className="w-1/4"> UNIDAD MEDIDA </th>
+                                    <th className="align-center flex w-1/12"> </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {new Array(6).fill('').map((_, idx) => {
+                                {data.materiales.map((material, idx) => {
                                     return (
                                         <tr key={idx} className="focus-within:bg-gray-100 hover:bg-gray-100">
-                                            <td className="p-2 w-1/4 border-t align-top break-words">
-                                                <Input
-                                                    autoFocus
-                                                    id="area"
-                                                    name="area"
-                                                    required
-                                                    value={data.area}
-                                                    placeholder="CÓDIGO"
-                                                    onChange={(e) => setData('area', e.target.value)}
-                                                />
+                                            <td className="w-1/4 border-t p-2 align-top break-words">
+                                                <Select key={`materiales_id-${resetKey}`}>
+                                                    <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
+                                                        <SelectValue placeholder="Selecciona un Valor" />
+                                                    </SelectTrigger>
+                                                    <SelectContent
+                                                        position="popper"
+                                                        align="start"
+                                                        side="bottom"
+                                                        sideOffset={3}
+                                                        className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
+                                                    >
+                                                        {materiales.map((material: any, idx: number) => {
+                                                            return (
+                                                                <SelectItem key={idx} value={material.codigo}>
+                                                                    {' '}
+                                                                    {material.codigo} - {material.descripcion}{' '}
+                                                                </SelectItem>
+                                                            );
+                                                        })}
+                                                    </SelectContent>
+                                                </Select>
                                             </td>
-                                            <td className="p-2 w-1/4 border-t break-words">
-                                                <Input
-                                                    autoFocus
-                                                    id="area"
-                                                    name="area"
-                                                    required
-                                                    value={data.area}
-                                                    placeholder="DESCRIPCIÓN lista de materiales"
-                                                    onChange={(e) => setData('area', e.target.value)}
-                                                />
-                                            </td>
-                                            <td className="p-2 w-1/4 border-t align-top break-words">
+                                            <td className="w-1/4 border-t p-2 align-top break-words">
                                                 <Input
                                                     autoFocus
                                                     id="area"
@@ -165,7 +223,7 @@ export default function ({ id, onReload }: any) {
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
                                             </td>
-                                            <td className="p-2 w-1/4 border-t align-top break-words">
+                                            <td className="w-1/4 border-t p-2 align-top break-words">
                                                 <Input
                                                     autoFocus
                                                     id="area"
@@ -176,7 +234,37 @@ export default function ({ id, onReload }: any) {
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
                                             </td>
-                                            <td className="p-2 w-1/4 border-t align-top break-words"></td>
+                                            <td className="w-1/4 border-t p-2 align-top break-words">
+                                                <Select key={`unidades_id-${resetKey}`}>
+                                                    <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
+                                                        <SelectValue placeholder="Selecciona un Valor" />
+                                                    </SelectTrigger>
+                                                    <SelectContent
+                                                        position="popper"
+                                                        align="start"
+                                                        side="bottom"
+                                                        sideOffset={3}
+                                                        className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
+                                                    >
+                                                        {unidades.map((unidad: any, idx: number) => {
+                                                            return (
+                                                                <SelectItem key={idx} value={unidad.id.toString()}>
+                                                                    {' '}
+                                                                    {unidad.descripcion}{' '}
+                                                                </SelectItem>
+                                                            );
+                                                        })}
+                                                    </SelectContent>
+                                                </Select>
+                                            </td>
+                                            
+                                            <td>
+                                                {idx > 0 && (
+                                                    <Button type="button" onClick={ ( ) => onRemoveMaterial(idx)}>
+                                                        <Trash2 />
+                                                    </Button>
+                                                )}
+                                            </td>
                                         </tr>
                                     );
                                 })}
@@ -186,7 +274,7 @@ export default function ({ id, onReload }: any) {
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
-                            <h6 className="mb-5 font-bold text-center">OBSERVACIONES</h6>
+                            <h6 className="mb-5 text-center font-bold">OBSERVACIONES</h6>
                             <div>
                                 <Textarea
                                     autoFocus
@@ -214,10 +302,10 @@ export default function ({ id, onReload }: any) {
                                 reset();
                             }}
                         >
-                            Cancelar
+                            Guardar
                         </Button>
                         <Button disabled={processing}>
-                            Guardar
+                            Guardar y Enviar
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                         </Button>
                     </div>

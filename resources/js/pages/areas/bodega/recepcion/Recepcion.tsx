@@ -10,7 +10,7 @@ import { BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import axios from 'axios';
 import { Check, LoaderCircle, X } from 'lucide-react';
-import { FormEventHandler, useState } from 'react';
+import { FormEventHandler, useEffect, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -21,8 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 type ThisForm = {
     tipo_material: string;
-    codigo: string;
-    nombre: string;
+    materiales_id: string;
     proveedor: string;
     fabricante: string;
     direccion: string;
@@ -33,14 +32,15 @@ type ThisForm = {
     lote_nmd: string;
     cantidad_total: string;
     cantidad_contenedor: string;
-    n_contendor: string;
-    unidad_medida: string;
+    n_contenedor: string;
+    unidades_id: string;
     material: string;
     descripcion: string;
     t_c: string;
     certificado_analisis: boolean;
     almacenar_especial: boolean;
     observaciones: string;
+
     contenedor_identificado: boolean;
     contenedor_identificado_obs: string;
     contendor_sucio: boolean;
@@ -68,13 +68,13 @@ type ThisForm = {
     material_certificado: boolean;
     material_certificado_obs: string;
 
+    estado: string;
 };
 
-export default function ({ id }: any) {
-    const { data, setData, post, put, processing, errors, reset } = useForm<Required<ThisForm>>({
+export default function ({ id, constants, materiales, unidades }: any) {
+    const { data, setData, post, put, errors, reset } = useForm<Required<ThisForm>>({
         tipo_material: '',
-        codigo: '',
-        nombre: '',
+        materiales_id: '',
         proveedor: '',
         fabricante: '',
         direccion: '',
@@ -85,8 +85,8 @@ export default function ({ id }: any) {
         lote_nmd: '',
         cantidad_total: '',
         cantidad_contenedor: '',
-        n_contendor: '',
-        unidad_medida: '',
+        n_contenedor: '',
+        unidades_id: '',
         material: '',
         descripcion: '',
         t_c: '',
@@ -119,13 +119,21 @@ export default function ({ id }: any) {
         descripcion_corresponde_obs: '',
         material_certificado: false,
         material_certificado_obs: '',
+        estado: 'B',
     });
 
     const [resetKey, setResetKey] = useState(Date.now());
+    const [processing, setProcessing] = useState(false);
+    const [submit, setSubmit] = useState(false);
 
-    const submit: FormEventHandler = async (e) => {
+    const onSubmit: FormEventHandler = async (e) => {
         e.preventDefault();
+        setData('estado', 'P');
+        setSubmit(true);
+    };
 
+    const onSend: any = async () => {
+        setProcessing(true);
         try {
             let response = null;
             if (id) {
@@ -138,37 +146,120 @@ export default function ({ id }: any) {
                 });
             }
 
-            reset();
-            onDownload(response.data.id);
-
+            setProcessing(false);
+            return response;
         } catch (error) {
             console.log(errors);
+            setProcessing(false);
             reset();
         }
-
-
     };
 
     const onDownload = (id: number) => {
         window.open('/bodega/recepcion/pdf/' + id, '_blank');
-    }
+    };
+
+    useEffect(() => {
+        const onDoSend = async () => {
+            if (!submit) return;
+
+            try {
+                const {
+                    data: { recepcion },
+                } = await onSend();
+                onDownload(recepcion.id);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        onDoSend();
+    }, [submit]);
+
+    useEffect(() => {
+        const onNext = async (tipo_material: string) => {
+            if (!tipo_material || id) return;
+
+            const {
+                data: { next },
+            } = await axios.post(route(`bodega.recepcion.next`, { tipo_material }));
+            if (next) {
+                setData('lote_nmd', next);
+            }
+        };
+
+        onNext(data.tipo_material);
+    }, [data.tipo_material]);
+
+    useEffect(() => {
+        const onGetItem = async (id: number) => {
+            if (!id) return;
+
+            const {
+                data: { recepcion },
+            } = await axios.get(route(`bodega.recepcion.show`, { recepcion: id }));
+            if (recepcion) {
+                const data: ThisForm = {
+                    ...recepcion,
+                    materiales_id: recepcion.materiales_id.toString(),
+                    unidades_id: recepcion.unidades_id.toString(),
+                    certificado_analisis: recepcion.certificado_analisis == 1 ? true : false,
+                    almacenar_especial: recepcion.almacenar_especial == 1 ? true : false,
+                    contenedor_identificado_obs: recepcion.contenedor_identificado_obs ?? '',
+                    contendor_sucio_obs: recepcion.contendor_sucio_obs ?? '',
+                    contenedor_humedo_obs: recepcion.contenedor_humedo_obs ?? '',
+                    olor_extrano_obs: recepcion.olor_extrano_obs ?? '',
+                    contenedor_derrame_obs: recepcion.contenedor_derrame_obs ?? '',
+                    contenedor_golpeado_obs: recepcion.contenedor_golpeado_obs ?? '',
+                    contenedor_roto_obs: recepcion.contenedor_roto_obs ?? '',
+                    material_menor_cantidad_obs: recepcion.material_menor_cantidad_obs ?? '',
+                    material_mayor_cantidad_obs: recepcion.material_mayor_cantidad_obs ?? '',
+                    fecha_vigente_obs: recepcion.fecha_vigente_obs ?? '',
+                    material_factura_obs: recepcion.material_factura_obs ?? '',
+                    descripcion_corresponde_obs: recepcion.descripcion_corresponde_obs ?? '',
+                    material_certificado_obs: recepcion.material_certificado_obs ?? '',
+
+                    contenedor_identificado: recepcion.contenedor_identificado == 1 ? true : false,
+                    contendor_sucio: recepcion.contendor_sucio == 1 ? true : false,
+                    contenedor_humedo: recepcion.contenedor_humedo == 1 ? true : false,
+                    olor_extrano: recepcion.olor_extrano == 1 ? true : false,
+                    contenedor_derrame: recepcion.contenedor_derrame == 1 ? true : false,
+                    contenedor_golpeado: recepcion.contenedor_golpeado == 1 ? true : false,
+                    contenedor_roto: recepcion.contenedor_roto == 1 ? true : false,
+                    material_menor_cantidad: recepcion.material_menor_cantidad == 1 ? true : false,
+                    material_mayor_cantidad: recepcion.material_mayor_cantidad == 1 ? true : false,
+                    fecha_vigente: recepcion.fecha_vigente == 1 ? true : false,
+                    material_factura: recepcion.material_factura == 1 ? true : false,
+                    descripcion_corresponde: recepcion.descripcion_corresponde == 1 ? true : false,
+                    material_certificado: recepcion.material_certificado == 1 ? true : false,
+                };
+                setData(data);
+                setResetKey(Date.now());
+            }
+        };
+
+        onGetItem(id);
+    }, [id]);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Areas" />
 
             <div className="columns-1 gap-4 space-y-4 p-8">
-                <form onSubmit={submit}>
-
+                <form onSubmit={onSubmit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">DATOS INICIALES</h6>
+                        <h6 className="mb-5 text-center font-bold">DATOS INICIALES</h6>
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
                             <div>
                                 <Label htmlFor="tipo_material"> TIPO DE MATERIAL </Label>
 
-                                <Select key={`tipos_id-${resetKey}`} defaultValue={data.tipo_material} onValueChange={(value) => setData('tipo_material', value)}>
+                                <Select
+                                    key={`tipos_id-${resetKey}`}
+                                    defaultValue={data.tipo_material}
+                                    onValueChange={(value) => setData('tipo_material', value)}
+                                >
                                     <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
-                                        <SelectValue placeholder="Selecciona un Tipo" />
+                                        <SelectValue placeholder="Selecciona un Valor" />
                                     </SelectTrigger>
                                     <SelectContent
                                         position="popper"
@@ -177,55 +268,56 @@ export default function ({ id }: any) {
                                         sideOffset={3}
                                         className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
                                     >
-                                        <SelectItem value="PRIMA"> MATERIA PRIMA </SelectItem>
-                                        <SelectItem value="ENVASE"> MATERIAL DE ENVASE </SelectItem>
-                                        <SelectItem value="EMPAQUE"> MATERIAL DE EMPAQUE </SelectItem>
+                                        {constants.tipo_material.map((item: any, idx: number) => {
+                                            return (
+                                                <SelectItem key={idx} value={item.codigo}>
+                                                    {' '}
+                                                    {item.descripcion}{' '}
+                                                </SelectItem>
+                                            );
+                                        })}
                                     </SelectContent>
                                 </Select>
 
                                 {errors.tipo_material && <p className="mt-1 text-sm text-red-500">{errors.tipo_material}</p>}
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">DESCRIPCION lista de materiales</h6>
-                        <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
                             <div>
-                                <Label htmlFor="codigo"> CODIGO </Label>
+                                <Label htmlFor="materiales_id"> MATERIAL </Label>
 
-                                <Input
-                                    autoFocus
-                                    id="codigo"
-                                    name="codigo"
-                                    required
-                                    value={data.codigo}
-                                    placeholder="CODIGO"
-                                    onChange={(e) => setData('codigo', e.target.value)}
-                                />
+                                <Select
+                                    key={`materiales_id-${resetKey}`}
+                                    defaultValue={data.materiales_id}
+                                    onValueChange={(value) => setData('materiales_id', value)}
+                                >
+                                    <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
+                                        <SelectValue placeholder="Selecciona un Valor" />
+                                    </SelectTrigger>
+                                    <SelectContent
+                                        position="popper"
+                                        align="start"
+                                        side="bottom"
+                                        sideOffset={3}
+                                        className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
+                                    >
+                                        {materiales.map((material: any, idx: number) => {
+                                            return (
+                                                <SelectItem key={idx} value={material.id.toString()}>
+                                                    {' '}
+                                                    {material.codigo} - {material.descripcion}{' '}
+                                                </SelectItem>
+                                            );
+                                        })}
+                                    </SelectContent>
+                                </Select>
 
-                                {errors.codigo && <p className="mt-1 text-sm text-red-500">{errors.codigo}</p>}
-                            </div>
-                            <div>
-                                <Label htmlFor="nombre"> NOMBRE </Label>
-
-                                <Input
-                                    autoFocus
-                                    id="nombre"
-                                    name="nombre"
-                                    required
-                                    value={data.nombre}
-                                    placeholder="NOMBRE"
-                                    onChange={(e) => setData('nombre', e.target.value)}
-                                />
-
-                                {errors.nombre && <p className="mt-1 text-sm text-red-500">{errors.nombre}</p>}
+                                {errors.materiales_id && <p className="mt-1 text-sm text-red-500">{errors.materiales_id}</p>}
                             </div>
                         </div>
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">DATOS DE COMPRA</h6>
+                        <h6 className="mb-5 text-center font-bold">DATOS DE COMPRA</h6>
                         <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
                             <div>
                                 <Label htmlFor="proveedor"> PROVEEDOR </Label>
@@ -321,7 +413,7 @@ export default function ({ id }: any) {
                                 <Label htmlFor="fecha_vencimiento"> FECHA VENCIMIENTO </Label>
 
                                 <Input
-                                    type='date'
+                                    type="date"
                                     autoFocus
                                     id="fecha_vencimiento"
                                     name="fecha_vencimiento"
@@ -337,17 +429,18 @@ export default function ({ id }: any) {
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">INFORMACION MATERIAL</h6>
+                        <h6 className="mb-5 text-center font-bold">INFORMACION MATERIAL</h6>
                         <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
                             <div>
-                                <Label htmlFor="lote_nmd"> LOTE NMD consecutivo </Label>
+                                <Label htmlFor="lote_nmd"> LOTE NMD </Label>
 
                                 <Input
+                                    readOnly
                                     autoFocus
                                     id="lote_nmd"
                                     name="lote_nmd"
                                     required
-                                    value={data.lote_nmd}
+                                    value={data.tipo_material + '-' + data.lote_nmd}
                                     placeholder="LOTE NMD"
                                     onChange={(e) => setData('lote_nmd', e.target.value)}
                                 />
@@ -385,44 +478,62 @@ export default function ({ id }: any) {
                                 {errors.cantidad_contenedor && <p className="mt-1 text-sm text-red-500">{errors.cantidad_contenedor}</p>}
                             </div>
                             <div>
-                                <Label htmlFor="n_contendor"> N.º CONTENEDORES </Label>
+                                <Label htmlFor="n_contenedor"> N.º CONTENEDORES </Label>
 
                                 <Input
                                     autoFocus
-                                    id="n_contendor"
-                                    name="n_contendor"
+                                    id="n_contenedor"
+                                    name="n_contenedor"
                                     required
-                                    value={data.n_contendor}
+                                    value={data.n_contenedor}
                                     placeholder="N.º CONTENEDORES"
-                                    onChange={(e) => setData('n_contendor', e.target.value)}
+                                    onChange={(e) => setData('n_contenedor', e.target.value)}
                                 />
 
-                                {errors.n_contendor && <p className="mt-1 text-sm text-red-500">{errors.n_contendor}</p>}
+                                {errors.n_contenedor && <p className="mt-1 text-sm text-red-500">{errors.n_contenedor}</p>}
                             </div>
                             <div>
-                                <Label htmlFor="unidad_medida"> UNIDAD DE MEDIDA - lista </Label>
+                                <Label htmlFor="unidad_medida"> UNIDAD DE MEDIDA </Label>
 
-                                <Input
-                                    autoFocus
-                                    id="unidad_medida"
-                                    name="unidad_medida"
-                                    required
-                                    value={data.unidad_medida}
-                                    placeholder="UNIDAD DE MEDIDA"
-                                    onChange={(e) => setData('unidad_medida', e.target.value)}
-                                />
-
-                                {errors.unidad_medida && <p className="mt-1 text-sm text-red-500">{errors.unidad_medida}</p>}
+                                <Select
+                                    key={`tipos_id-${resetKey}`}
+                                    defaultValue={data.unidades_id}
+                                    onValueChange={(value) => setData('unidades_id', value)}
+                                >
+                                    <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
+                                        <SelectValue placeholder="Selecciona un Valor" />
+                                    </SelectTrigger>
+                                    <SelectContent
+                                        position="popper"
+                                        align="start"
+                                        side="bottom"
+                                        sideOffset={3}
+                                        className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
+                                    >
+                                        {unidades.map((unidad: any, idx: number) => {
+                                            return (
+                                                <SelectItem key={idx} value={unidad.id.toString()}>
+                                                    {' '}
+                                                    {unidad.descripcion}{' '}
+                                                </SelectItem>
+                                            );
+                                        })}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">CONTENEDOR</h6>
+                        <h6 className="mb-5 text-center font-bold">CONTENEDOR</h6>
                         <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
                             <div>
                                 <Label htmlFor="material"> MATERIAL </Label>
-                                <Select key={`tipos_id-${resetKey}`} defaultValue={data.material} onValueChange={(value) => setData('material', value)}>
+                                <Select
+                                    key={`tipos_id-${resetKey}`}
+                                    defaultValue={data.material}
+                                    onValueChange={(value) => setData('material', value)}
+                                >
                                     <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
                                         <SelectValue placeholder="Selecciona un Formato" />
                                     </SelectTrigger>
@@ -442,10 +553,14 @@ export default function ({ id }: any) {
 
                                 {errors.material && <p className="mt-1 text-sm text-red-500">{errors.material}</p>}
                             </div>
-                            
+
                             <div>
                                 <Label htmlFor="descripcion"> DESCRIPCION </Label>
-                                <Select key={`tipos_id-${resetKey}`} defaultValue={data.descripcion} onValueChange={(value) => setData('descripcion', value)}>
+                                <Select
+                                    key={`tipos_id-${resetKey}`}
+                                    defaultValue={data.descripcion}
+                                    onValueChange={(value) => setData('descripcion', value)}
+                                >
                                     <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
                                         <SelectValue placeholder="Selecciona un Formato" />
                                     </SelectTrigger>
@@ -483,7 +598,10 @@ export default function ({ id }: any) {
                                 {errors.t_c && <p className="mt-1 text-sm text-red-500">{errors.t_c}</p>}
                             </div>
                             <div>
-                                <Checkbox checked={data.certificado_analisis} onCheckedChange={(checked) => setData('certificado_analisis', checked as boolean)} />
+                                <Checkbox
+                                    checked={data.certificado_analisis}
+                                    onCheckedChange={(checked) => setData('certificado_analisis', checked as boolean)}
+                                />
                                 <Label className="ms-1" htmlFor="usa_bd">
                                     {' '}
                                     CERTIFICADO DE ANALISIS?{' '}
@@ -492,7 +610,10 @@ export default function ({ id }: any) {
                                 {errors.certificado_analisis && <p className="mt-1 text-sm text-red-500">{errors.certificado_analisis}</p>}
                             </div>
                             <div>
-                                <Checkbox checked={data.almacenar_especial} onCheckedChange={(checked) => setData('almacenar_especial', checked as boolean)} />
+                                <Checkbox
+                                    checked={data.almacenar_especial}
+                                    onCheckedChange={(checked) => setData('almacenar_especial', checked as boolean)}
+                                />
                                 <Label className="ms-1" htmlFor="usa_bd">
                                     {' '}
                                     ¿ALMACENAR EN CONDICIONES ESPECIALES?{' '}
@@ -500,12 +621,11 @@ export default function ({ id }: any) {
 
                                 {errors.almacenar_especial && <p className="mt-1 text-sm text-red-500">{errors.almacenar_especial}</p>}
                             </div>
-
                         </div>
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">OBSERVACIONES</h6>
+                        <h6 className="mb-5 text-center font-bold">OBSERVACIONES</h6>
                         <div>
                             <Textarea
                                 autoFocus
@@ -523,7 +643,7 @@ export default function ({ id }: any) {
                     </div>
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <h6 className="mb-5 font-bold text-center">LISTA DE VERIFICACION</h6>
+                        <h6 className="mb-5 text-center font-bold">LISTA DE VERIFICACION</h6>
                         <table className="w-full table-fixed whitespace-nowrap">
                             <thead>
                                 <tr className="text-left font-bold">
@@ -554,7 +674,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.contenedor_identificado_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('contenedor_identificado_obs', e.target.value)}
@@ -579,7 +698,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.contendor_sucio_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('contendor_sucio_obs', e.target.value)}
@@ -604,7 +722,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.contenedor_humedo_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('contenedor_humedo_obs', e.target.value)}
@@ -629,7 +746,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.olor_extrano_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('olor_extrano_obs', e.target.value)}
@@ -657,7 +773,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.contenedor_derrame_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('contenedor_derrame_obs', e.target.value)}
@@ -682,7 +797,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.contenedor_golpeado_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('contenedor_golpeado_obs', e.target.value)}
@@ -707,7 +821,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.contenedor_roto_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('contenedor_roto_obs', e.target.value)}
@@ -735,7 +848,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.material_menor_cantidad_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('material_menor_cantidad_obs', e.target.value)}
@@ -763,7 +875,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.material_mayor_cantidad_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('material_mayor_cantidad_obs', e.target.value)}
@@ -791,7 +902,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.fecha_vigente_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('fecha_vigente_obs', e.target.value)}
@@ -816,7 +926,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.material_factura_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('material_factura_obs', e.target.value)}
@@ -844,7 +953,6 @@ export default function ({ id }: any) {
                                             id="descripcion_corresponde_obs"
                                             name="descripcion_corresponde_obs"
                                             rows={3}
-                                            required
                                             value={data.descripcion_corresponde_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('descripcion_corresponde_obs', e.target.value)}
@@ -869,7 +977,6 @@ export default function ({ id }: any) {
                                             id="area"
                                             name="area"
                                             rows={3}
-                                            required
                                             value={data.material_certificado_obs}
                                             placeholder="OBSERVACIONES"
                                             onChange={(e) => setData('material_certificado_obs', e.target.value)}
@@ -887,18 +994,17 @@ export default function ({ id }: any) {
                             disabled={processing}
                             type="button"
                             onClick={() => {
-                                onDownload(1);
+                                onSend();
                             }}
                         >
-                            Cancelar
+                            Guardar Borrador
                         </Button>
                         <Button disabled={processing}>
-                            Guardar
+                            Guardar y Enviar
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
                         </Button>
                     </div>
                 </form>
-
                 aprobar y cerrar formato, o devovler con observación
             </div>
         </AppLayout>

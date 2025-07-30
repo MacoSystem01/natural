@@ -10,24 +10,33 @@
         .no-border td { border: none; }
         .title { text-align: center; font-weight: bold; font-size: 16px; margin-bottom: 20px; }
         .subtitle { text-align: center; font-weight: bold; font-size: 12px; margin-bottom: 20px; }
+        .thirdtitle { font-weight: bold; }
         .section-title { font-weight: bold; background-color: #eee; padding: 4px; }
         .checkbox { text-align: center; }
         .obs { height: 60px; }
-
+        
         .page-break {
             page-break-before: always;
         }
     </style>
 </head>
 <body>
-
-    <div class="title">REPORTE DE RECEPCIÓN DE MATERIALES encabezado logo y encabezado</div>
-
-    <table class="no-border">
+    <table>
         <tr>
-            <td><strong>Código:</strong> F-BO-01-06</td>
-            <td><strong>Fecha Emisión:</strong> {{ $item->fecha_emision ?? '21-11-2023' }}</td>
-            <td><strong>Página:</strong> 1 de 2</td>
+            <td class="subtitle" rowspan="3">
+                <img src="logo.png" width="80">
+            </td>
+            <td class="subtitle">FORMATO</td>
+            <td><strong>CÓDIGO:</strong> F-BO-01-06</td>
+        </tr>
+        <tr>
+            <td class="subtitle" rowspan="2">
+                    <strong>REPORTE DE RECEPCIÓN DE MATERIALES</strong>
+            </td>
+            <td ><strong>PÁGINA:</strong> 1 de 2</td>
+        </tr>
+        <tr>
+            <td><strong>FECHA EMISIÓN:</strong> {{ $item->fecha_emision ?? '21-11-2023' }}</td>
         </tr>
     </table>
 
@@ -41,9 +50,9 @@
         </tr>
         <tr>
             <td><strong>Código:</strong></td>
-            <td>{{ $item->codigo ?? '' }}</td>
+            <td>{{ $item->producto->codigo ?? '' }}</td>
             <td><strong>Nombre:</strong></td>
-            <td>{{ $item->nombre ?? '' }}</td>
+            <td>{{ $item->producto->descripcion ?? '' }}</td>
         </tr>
     </table>
 
@@ -76,7 +85,7 @@
         <tr><td colspan="4" class="section-title subtitle">INFORMACIÓN MATERIAL</td></tr>
         <tr>
             <td><strong>Lote NMD</strong></td>
-            <td>{{ $item->lote_nmd ?? '' }}</td>
+            <td>{{ $item->tipo_material ?? '' }}-{{ $item->lote_nmd ?? '' }}</td>
             <td><strong>Cantidad Total</strong></td>
             <td>{{ $item->cantidad_total ?? '' }}</td>
         </tr>
@@ -84,11 +93,11 @@
             <td><strong>Cantidad por Contenedor</strong></td>
             <td>{{ $item->cantidad_contenedor ?? '' }}</td>
             <td><strong>N.º Contenedores</strong></td>
-            <td>{{ $item->n_contenedores ?? '' }}</td>
+            <td>{{ $item->n_contenedor ?? '' }}</td>
         </tr>
         <tr>
             <td><strong>Unidad de Medida</strong></td>
-            <td>{{ $item->unidad_medida ?? '' }}</td>
+            <td>{{ $item->unidad_medida?->descripcion ?? '' }}</td>
             <td><strong>Valor de Conversión</strong></td>
             <td>{{ $item->valor_conversion ?? '' }}</td>
         </tr>
@@ -99,8 +108,8 @@
             <td colspan="8" class="section-title subtitle">CONTENEDOR</td>
         </tr>
         <tr>
-            <td colspan="4">MATERIAL</td>
-            <td colspan="4">DESCRIPCION</td>
+            <td class="subtitle" colspan="4">MATERIAL</td>
+            <td class="subtitle" colspan="4">DESCRIPCION</td>
         </tr>
         <tr>
             <td>Papel</td>
@@ -128,20 +137,20 @@
             <td>{{ $item->descripcion == 'OTRO' ? 'X' : '' }}</td>
         </tr>
         <tr>
-            <td colspan="2">CERTIFICADO DE ANÁLISIS</td>
-            <td>SI</td>
+            <td class="thirdtitle" colspan="2">CERTIFICADO DE ANÁLISIS</td>
+            <td class="thirdtitle" >SI</td>
             <td class="checkbox">{{ $item->certificado_analisis == '1' ? 'X' : '' }}</td>
-            <td>NO</td>
+            <td class="thirdtitle" >NO</td>
             <td class="checkbox">{{ $item->certificado_analisis == '0' ? 'X' : '' }}</td>
             <td colspan="2"></td>
         </tr>
         <tr>
-            <td colspan="2">¿ALMACENAR EN CONDICIONES ESPECIALES?</td>
-            <td>SI</td>
+            <td class="thirdtitle" style="width: 160px;" colspan="2">¿ALMACENAR EN CONDICIONES ESPECIALES?</td>
+            <td class="thirdtitle" >SI</td>
             <td class="checkbox">{{ $item->almacenar_especial == '1' ? 'X' : '' }}</td>
-            <td>NO</td>
+            <td class="thirdtitle" >NO</td>
             <td class="checkbox">{{ $item->almacenar_especial == '0' ? 'X' : '' }}</td>
-            <td>T (ºC) =</td>
+            <td class="thirdtitle" >T (ºC) =</td>
             <td class="checkbox">{{ $item->t_c ?? '' }}</td>
         </tr>
     </table>
@@ -153,13 +162,22 @@
 
     <div class="page-break"></div>
 
-    <div class="title">REPORTE DE RECEPCIÓN DE MATERIALES</div>
-
-    <table class="no-border">
+    <table>
         <tr>
-            <td><strong>Código:</strong> F-BO-01-06</td>
-            <td><strong>Fecha Emisión:</strong> {{ $item->fecha_emision ?? '21-11-2023' }}</td>
-            <td><strong>Página:</strong> 2 de 2</td>
+            <td class="subtitle" rowspan="3">
+                <img src="logo.png" width="80">
+            </td>
+            <td class="subtitle">FORMATO</td>
+            <td><strong>CÓDIGO:</strong> F-BO-01-06</td>
+        </tr>
+        <tr>
+            <td class="subtitle" rowspan="2">
+                    <strong>REPORTE DE RECEPCIÓN DE MATERIALES</strong>
+            </td>
+            <td ><strong>PÁGINA:</strong> 2 de 2</td>
+        </tr>
+        <tr>
+            <td><strong>FECHA EMISIÓN:</strong> {{ $item->fecha_emision ?? '21-11-2023' }}</td>
         </tr>
     </table>
 
@@ -174,7 +192,7 @@
             <td class="section-title subtitle">OBSERVACIONES</td>
         </tr>
         <tr>
-            <td> ¿EL CONTENEDOR ESTA DEBIDAMENTE IDENTIFICADO, SELLADO Y ETIQUETADO? </td>
+            <td style="width: 270px;" > ¿EL CONTENEDOR ESTA DEBIDAMENTE IDENTIFICADO, SELLADO Y ETIQUETADO? </td>
             <td class="checkbox">{{ $item->contenedor_identificado == '1' ? 'X' : '' }}</td>
             <td class="checkbox">{{ $item->contenedor_identificado == '0' ? 'X' : '' }}</td>
             <td class="checkbox">{{ $item->contenedor_identificado_obs ?? '' }}</td>
@@ -229,9 +247,9 @@
         </tr>
         <tr>
             <td> ¿LA FECHA DE VENCIMIENTO ESTA VIGENTE? (NO MENOR A 12 MESES) </td>
-            <td class="checkbox">{{ $item->_fecha_vigente == '1' ? 'X' : '' }}</td>
-            <td class="checkbox">{{ $item->_fecha_vigente == '0' ? 'X' : '' }}</td>
-            <td class="checkbox">{{ $item->_fecha_vigente_obs ?? '' }}</td>
+            <td class="checkbox">{{ $item->fecha_vigente == '1' ? 'X' : '' }}</td>
+            <td class="checkbox">{{ $item->fecha_vigente == '0' ? 'X' : '' }}</td>
+            <td class="checkbox">{{ $item->fecha_vigente_obs ?? '' }}</td>
         </tr>
         <tr>
             <td> ¿EL MATERIAL VIENE ACOMPAÑADO DE FACTURA Y/O REMISION? </td>

@@ -5,6 +5,8 @@ namespace App\Models\Bodega;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
+use App\Models\UnidadesMedida;
+use App\Models\Materiales;
 
 class Recepcion extends Model
 {
@@ -14,8 +16,7 @@ class Recepcion extends Model
     protected $fillable=[
         'created_by',
         'tipo_material',
-        'codigo',
-        'nombre',
+        'materiales_id',
         'proveedor',
         'fabricante',
         'direccion',
@@ -26,9 +27,8 @@ class Recepcion extends Model
         'lote_nmd',
         'cantidad_total',
         'cantidad_contenedor',
-        'n_contendor',
-        'unidad_medida',
-        'valor_conversion',
+        'n_contenedor',
+        'unidades_id',
         'material',
         'descripcion',
         't_c',
@@ -61,6 +61,11 @@ class Recepcion extends Model
         'descripcion_corresponde_obs',
         'material_certificado',
         'material_certificado_obs',
+        'estado',
+    ];
+
+    protected $appends = [
+        'tipo_material_obj'
     ];
     
     function creator(){
@@ -69,5 +74,18 @@ class Recepcion extends Model
 
     function approver(){
         return $this->belongsTo(User::class, 'approved_by', 'id');
+    }
+    
+    function unidad_medida(){
+        return $this->belongsTo(UnidadesMedida::class, 'unidades_id', 'id');
+    }
+
+    function producto(){
+        return $this->belongsTo(Materiales::class, 'materiales_id', 'id');
+    }
+
+    function getTipoMaterialObjAttribute(){
+        $materiales = collect( config('constants.tipo_material') );
+        return $materiales->firstWhere('codigo', $this->tipo_material);
     }
 }
