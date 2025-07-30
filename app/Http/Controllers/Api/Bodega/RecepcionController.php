@@ -40,6 +40,7 @@ class RecepcionController extends Controller
      */
     public function show(Recepcion $recepcion)
     {
+        return response()->json(['recepcion' => $recepcion]);
         // return  new AreasResource($area);
     }
 
@@ -53,7 +54,12 @@ class RecepcionController extends Controller
             'area' => 'required|string|max:255',
         ]);*/
 
-        $recepcion->update( $request->all() );
+        $data = $request->all();
+        $data['updated_by'] = \Auth::user()->id;
+
+        $recepcion->update( $data );
+
+        return response()->json(['recepcion' => $recepcion]);
         // return  new AreasResource($area);
     }
 
@@ -63,5 +69,29 @@ class RecepcionController extends Controller
     public function destroy(Recepcion $recepcion)
     {
         $recepcion->delete();
+    }
+
+
+    public function next(String $tipo_material)
+    {
+        $nextID = Recepcion::where('tipo_material', $tipo_material)->max('lote_nmd') + 1;
+        return ['next' => $nextID];
+    }
+
+
+    public function byOP(String $op)
+    {
+        $str = explode('-', $op);
+        
+        if( isset($str[1]) ) {
+            $recepcion = Recepcion::with('producto')
+                            ->where('tipo_material', $str[0])
+                            ->where('id', $str[1])
+                            ->first();
+    
+            return response()->json(['recepcion' => $recepcion]);
+        } else {
+            return null;
+        }
     }
 }

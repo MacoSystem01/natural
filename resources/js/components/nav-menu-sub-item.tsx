@@ -8,16 +8,19 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
     const page = usePage();
 
     const isChildOpen = ( item: NavItem ) => {
-        return false
-        /*
-        console.log(  item.title )
-        if ( item.children?.some((child) => child.href === page.url ) ) {
-            console.log('existe')
-            return true
+        if (item.children?.some((child) => child.href === page.url)) {
+            return true;
         } else {
-            item.children?.forEach( child => isChildOpen( child ) )
+            let flag = false;
+            item.children?.some( (child) => {
+                flag = isChildOpen ( child )
+                if ( flag ) {
+                    return flag;
+                }
+            })
+
+            return flag;
         }
-        */
     }
 
     return (

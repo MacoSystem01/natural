@@ -18,6 +18,14 @@ Route::middleware(['web', 'verified'])
     Route::prefix('bodega')
         ->name('bodega.')
         ->group( function(){
+            Route::prefix('recepcion')
+                ->controller(App\Http\Controllers\Api\Bodega\RecepcionController::class)
+                ->name('recepcion.')
+                ->group( function(){
+                    Route::post('next/{tipo_material}', 'next')->name('next');
+                    
+                    Route::post('byOP/{op}', 'byOP')->name('find');
+                });
             Route::apiResource('recepcion', App\Http\Controllers\Api\Bodega\RecepcionController::class);
         });
 
