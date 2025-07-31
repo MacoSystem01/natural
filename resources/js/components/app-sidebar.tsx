@@ -71,7 +71,7 @@ const mainNavItems: NavItem[] = [
                             {
                                 title: 'Tiempo Improductivo',
                                 icon: Clock,
-                                href: '/planeacion/',
+                                href: '/planeacion/tiempo-improductivo',
                             },
                             {
                                 title: 'Desperdicio',

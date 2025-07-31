@@ -11,13 +11,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
 {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('areas_id')->nullable();
-            $table->foreign('areas_id')->references('id')->on('areas');
-        });
-    }
+    Schema::table('users', function (Blueprint $table) {
+        if (!Schema::hasColumn('users', 'areas_id')) {
+            $table->unsignedBigInteger('areas_id')->nullable()->after('id'); // o la posición correcta
+        }
+    });
+}
 
     /**
      * Reverse the migrations.
