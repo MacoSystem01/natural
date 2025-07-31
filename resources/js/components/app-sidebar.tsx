@@ -66,17 +66,17 @@ const mainNavItems: NavItem[] = [
                             {
                                 title: 'Registro de Lote',
                                 icon: FileText,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/RegistroLote',
                             },
                             {
                                 title: 'Orden de Producción',
                                 icon: ClipboardCheck,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/OrdenProduccion',
                             },
                             {
                                 title: 'Orden de Trabajo Bodega MP',
                                 icon: ClipboardList,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/FPr09BodegaMP',
                             },
                             {
                                 title: 'Orden de Trabajo Bodega ME',

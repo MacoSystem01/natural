@@ -96,11 +96,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 });
 
             // Registro Lote
-            Route::controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
-                ->prefix('registro-lote')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+            Route::prefix('planeacion')
+            ->group(function () {
+                Route::prefix('registrolote')
+                    ->controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
+                    ->group(function () {
+                        Route::get('/', 'RegistroLote');
+                        Route::get('/pdf/{id}', 'descargarPDF')->name('planeacion.registrolote.pdf');
+                    });
+            });
+
 
             // Tiempo Improductivo
             Route::controller(App\Http\Controllers\Planeacion\TiempoImproductivoController::class)
