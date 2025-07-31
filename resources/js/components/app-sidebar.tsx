@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { ArrowRightCircle, Check, Cog, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User, ClipboardList, Tags, FileLock, Clock, Recycle } from 'lucide-react';
+import { ArrowRightCircle, Check, Cog, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User, ClipboardList, Tags, FileLock, Clock, Recycle, ClipboardCheck, Tag, Bookmark, ListOrdered } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -62,6 +62,49 @@ const mainNavItems: NavItem[] = [
                         title: 'Emisión de batch record',
                         icon: Tags,
                         href: '/planeacion/',
+                        children: [
+                            {
+                                title: 'Registro de Lote',
+                                icon: FileText,
+                                href: 'areas/planeacion/',
+                            },
+                            {
+                                title: 'Orden de Producción',
+                                icon: ClipboardCheck,
+                                href: 'areas/planeacion/',
+                            },
+                            {
+                                title: 'Orden de Trabajo Bodega MP',
+                                icon: ClipboardList,
+                                href: 'areas/planeacion/',
+                            },
+                            {
+                                title: 'Orden de Trabajo Bodega ME',
+                                icon: ClipboardList,
+                                href: 'areas/planeacion/',
+                            },
+                            {
+                                title: 'Orden de Trabajo Bodega MEE',
+                                icon: ClipboardList,
+                                href: 'areas/planeacion/',
+                            },
+                            {
+                                title: 'Etiqueta de Identificación Material de Envase y Empaque Dispensado',
+                                icon: Tag,
+                                href: 'areas/planeacion/',
+                            },
+                            {
+                                title: 'Etiqueta de Identificación Materias Primas',
+                                icon: Bookmark,
+                                href: 'areas/planeacion/',
+                            }, 
+                            { 
+                                title: 'Orden de Trabajo Codificado',
+                                icon: ListOrdered,
+                                href: 'areas/planeacion/',
+                            },
+                        ]
+                        
                     },
                     {
                         title: 'Cierre De Batch Record',
@@ -71,7 +114,7 @@ const mainNavItems: NavItem[] = [
                             {
                                 title: 'Tiempo Improductivo',
                                 icon: Clock,
-                                href: '/planeacion/tiempo-improductivo',
+                                href: 'areas/planeacion/TiempoImproductivo',
                             },
                             {
                                 title: 'Desperdicio',
