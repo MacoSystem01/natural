@@ -31,44 +31,20 @@ Route::middleware(['web', 'verified'])
 
 
     // API PLANEACIÓN
+    Route::prefix('planeacion')
+        ->name('planeacion.')
+        ->group( function(){
+            // Route::apiResource('conciliacion-orden-produccion', App\Http\Controllers\Api\Planeacion\ConciliacionOrdenProduccionController::class);
+            // Route::apiResource('detalle-acondicionamiento', App\Http\Controllers\Api\Planeacion\DetalleAcondicionamientoController::class);
+            // Route::apiResource('detalle-dispensado', App\Http\Controllers\Api\Planeacion\DetalleDispensadoController::class);
+            // Route::apiResource('detalle-envasado', App\Http\Controllers\Api\Planeacion\DetalleEnvasadoController::class);
+            // Route::apiResource('detalle-fabricacion', App\Http\Controllers\Api\Planeacion\DetalleFabricacionController::class);
+            // Route::apiResource('detalle-fabricacion', App\Http\Controllers\Api\Planeacion\DetalleFabricacionController::class);
+        
+        });
+
+
     Route::prefix('planeacion')->group(function () {
-
-        // Conciliación Orden Producción
-        Route::controller(App\Http\Controllers\Planeacion\ConciliacionOrdenProduccionController::class)
-            ->prefix('conciliacion-orden-produccion')
-            ->group(function () {
-                Route::get('/', 'index');
-                Route::get('/pdf/{id}', 'descargarPDF')->name('api.planeacion.conciliacionOrdenProduccion.pdf');
-            });
-
-        // Detalle Acondicionamiento
-        Route::controller(App\Http\Controllers\Planeacion\DetalleAcondicionamientoController::class)
-            ->prefix('detalle-acondicionamiento')
-            ->group(function () {
-                Route::get('/', 'index');
-            });
-
-        // Detalle Dispensado
-        Route::controller(App\Http\Controllers\Planeacion\DetalleDispensadoController::class)
-            ->prefix('detalle-dispensado')
-            ->group(function () {
-                Route::get('/', 'index');
-            });
-
-        // Detalle Envasado
-        Route::controller(App\Http\Controllers\Planeacion\DetalleEnvasadoController::class)
-            ->prefix('detalle-envasado')
-            ->group(function () {
-                Route::get('/', 'index');
-            });
-
-        // Detalle Fabricación
-        Route::controller(App\Http\Controllers\Planeacion\DetalleFabricacionController::class)
-            ->prefix('detalle-fabricacion')
-            ->group(function () {
-                Route::get('/', 'index');
-            });
-
         // FPr09 Bodega MP
         Route::controller(App\Http\Controllers\Planeacion\FPr09BodegaMPController::class)
             ->prefix('fpr09-bodega-mp')

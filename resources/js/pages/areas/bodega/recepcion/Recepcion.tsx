@@ -1029,11 +1029,22 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 onSend();
                             }}
                         >
-                            Guardar Borrador
+                            {processing ? (
+                                <>
+                                    Guardando <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+                                </>
+                            ) : (
+                                'Guardar Borrador'
+                            )}
                         </Button>
                         <Button disabled={processing}>
-                            Guardar y Enviar
-                            {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+                            {processing ? (
+                                <>
+                                    Guardando <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+                                </>
+                            ) : (
+                                'Guardar y Emitir'
+                            )}
                         </Button>
                     </div>
                 </form>

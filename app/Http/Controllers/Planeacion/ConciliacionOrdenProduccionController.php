@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Planeacion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ConciliacionOrdenProduccionController extends Controller
 {
     public function index()
     {
-        return view('planeacion.conciliacion.index');
+        return Inertia::render('areas/planeacion/ConciliacionOrdenProduccion');
     }
 
     public function descargarPDF($id)
     {
-        // Lógica para generar el PDF
         return "Descargando PDF de Conciliación con ID: {$id}";
     }
 }

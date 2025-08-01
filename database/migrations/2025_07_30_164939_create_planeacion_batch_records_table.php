@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('f_pr_05_batch_records', function (Blueprint $table) {
+        Schema::create('planeacion_batch_records', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
@@ -54,8 +54,7 @@ return new class extends Migration
             ];
 
             foreach ($documentos as $doc) {
-                $table->string($doc . '_responsable')->nullable();
-                $table->date($doc . '_fecha')->nullable();
+                $table->boolean($doc)->nullable();
             }
 
             // Datos de producción y control final
@@ -63,12 +62,20 @@ return new class extends Migration
             $table->date('fecha_produccion')->nullable();
 
             // Firmas
-            $table->string('revisado_por')->nullable();
-            $table->date('revisado_fecha')->nullable();
-            $table->string('aprobado_por')->nullable();
-            $table->date('aprobado_fecha')->nullable();
-            $table->string('liberado_por')->nullable();
-            $table->date('liberado_fecha')->nullable();
+            $table->foreignId('creado_por')->nullable()->constrained('users');
+            $table->foreignId('modificado_por')->nullable()->constrained('users');
+
+            $table->foreignId('aprobado_por')->nullable()->constrained('users');
+            $table->timestamp('aprobado_fecha')->nullable();
+
+            $table->foreignId('revisado_por')->nullable()->constrained('users');
+            $table->timestamp('revisado_fecha')->nullable();
+            
+            $table->foreignId('liberado_por')->nullable()->constrained('users');
+            $table->timestamp('liberado_fecha')->nullable();
+            
+            $table->char('estado', 1);
+            $table->text('observacion_devolucion')->nullable();
 
             // Metadata
             $table->softDeletes();
@@ -80,6 +87,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('f_pr_05_batch_records');
+        Schema::dropIfExists('planeacion_batch_records');
     }
 };

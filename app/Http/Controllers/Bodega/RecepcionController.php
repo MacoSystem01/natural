@@ -41,7 +41,9 @@ class RecepcionController extends Controller
 
     public function entrega()
     {
-        return Inertia::render('areas/bodega/entrega/Entrega', []);
+        return Inertia::render('areas/bodega/entrega/Entrega', [
+            'constants' => config('constants'),
+        ]);
     }
 
     public function salida()

@@ -1,8 +1,11 @@
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
 
 export default function RegistroLote() {
     return (
-        <>
+        <AppLayout>
             <Head title="Registro de Lote" />
             <div className="p-6 space-y-6 text-sm text-gray-700">
                 <div className="text-center">
@@ -86,11 +89,28 @@ export default function RegistroLote() {
                 </div>
 
                 {/* Cantidad producida */}
-                <div className="grid grid-cols-3 gap-4 border p-4 rounded-xl shadow">
-                    <label>CANTIDAD PRODUCIDA:</label>
-                    <input className="border p-1" />
-                    <label>FECHA:</label>
-                    <input className="border p-1" type="date" />
+                <div className="grid grid-cols-2 gap-4 border p-4 rounded-xl shadow">
+                    <div>
+                        <Label>CANTIDAD PRODUCIDA:</Label>
+                        <Input
+                            autoFocus
+                            id="proveedor"
+                            name="proveedor"
+                            required
+                            placeholder="PROVEEDOR"
+                        />
+                    </div>
+                    <div>
+                        <Label>FECHA:</Label>
+                        <Input
+                            type="date"
+                            autoFocus
+                            id="proveedor"
+                            name="proveedor"
+                            required
+                            placeholder="PROVEEDOR"
+                        />
+                    </div>
                 </div>
 
                 {/* Firmas */}
@@ -115,6 +135,6 @@ export default function RegistroLote() {
                     </div>
                 </div>
             </div>
-        </>
+        </AppLayout>
     );
 }
