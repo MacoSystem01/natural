@@ -17,6 +17,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 type Material = {
+    codigo: string;
     material: string;
     lote: string;
     cantidad: string;
@@ -26,22 +27,27 @@ type Material = {
 type ThisForm = {
     proveedor: string;
     area: string;
-    oc: string;
+    op: string;
     lote: string;
     remision: string;
     materiales: Material[];
     observaciones: string;
+    destino: string;
+    codigo: string,
 };
 
 export default function ({ id, materiales, unidades }: any) {
     const { data, setData, post, put, processing, errors, reset } = useForm<Required<ThisForm>>({
+        destino: '',
+        codigo: '',
         proveedor: '',
         area: '',
-        oc: '',
+        op: '',
         lote: '',
         remision: '',
         materiales: [
             {
+                codigo: '',
                 material: '',
                 lote: '',
                 cantidad: '',
@@ -55,6 +61,7 @@ export default function ({ id, materiales, unidades }: any) {
 
     const onAddMaterial = () => {
         const material: Material = {
+            codigo: '',
             material: '',
             lote: '',
             unidades_id: '',
