@@ -75,7 +75,7 @@ class RecepcionController extends Controller
     public function next(String $tipo_material)
     {
         $nextID = Recepcion::where('tipo_material', $tipo_material)->max('lote_nmd') + 1;
-        return ['next' => $nextID];
+        return ['next' => str_pad($nextID, 4, "0", STR_PAD_LEFT) ];
     }
 
 

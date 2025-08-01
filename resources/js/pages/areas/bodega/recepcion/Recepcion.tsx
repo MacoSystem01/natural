@@ -122,8 +122,10 @@ export default function ({ id, constants, materiales, unidades }: any) {
         estado: 'B',
     });
 
+    const [materialesFilter, setMaterialesFilter] = useState<any[]>([]);
     const [resetKey, setResetKey] = useState(Date.now());
     const [processing, setProcessing] = useState(false);
+    const [material, setMaterial] = useState<any>({});
     const [submit, setSubmit] = useState(false);
 
     const onSubmit: FormEventHandler = async (e) => {
@@ -157,6 +159,28 @@ export default function ({ id, constants, materiales, unidades }: any) {
 
     const onDownload = (id: number) => {
         window.open('/bodega/recepcion/pdf/' + id, '_blank');
+    };
+
+    const onFilterMateriales = (search: string) => {
+        setMaterial({
+            codigo: search,
+            descripcion: '',
+        });
+
+        if (search) {
+            const filter = materiales.filter((m: any) => {
+                return m.codigo.toLowerCase().includes(search) || m.descripcion.toLowerCase().includes(search);
+            });
+            setMaterialesFilter(filter);
+        } else {
+            setMaterialesFilter([]);
+        }
+    };
+
+    const onSelectMaterial = (item: any) => {
+        setData('materiales_id', item.id);
+        setMaterial(item);
+        setMaterialesFilter([]);
     };
 
     useEffect(() => {
@@ -249,7 +273,7 @@ export default function ({ id, constants, materiales, unidades }: any) {
                 <form onSubmit={onSubmit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <h6 className="mb-5 text-center font-bold">DATOS INICIALES</h6>
-                        <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
+                        <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
                             <div>
                                 <Label htmlFor="tipo_material"> TIPO DE MATERIAL </Label>
 
@@ -282,36 +306,44 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 {errors.tipo_material && <p className="mt-1 text-sm text-red-500">{errors.tipo_material}</p>}
                             </div>
 
+                            <div className="relative">
+                                <Label htmlFor="materiales_id"> CODIGO MATERIAL </Label>
+
+                                <Input
+                                    autoFocus
+                                    id="materiales_id"
+                                    name="materiales_id"
+                                    required
+                                    value={material.codigo}
+                                    placeholder="CODIGO MATERIAL"
+                                    onChange={(e) => onFilterMateriales(e.target.value)}
+                                />
+
+                                {materialesFilter.length > 0 && (
+                                    <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto border bg-white">
+                                        {materialesFilter.map((item: any) => (
+                                            <li key={item.id} className="cursor-pointer p-2 hover:bg-gray-100" onClick={() => onSelectMaterial(item)}>
+                                                {item.codigo} - {item.descripcion}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+
+                                {errors.materiales_id && <p className="mt-1 text-sm text-red-500">{errors.materiales_id}</p>}
+                            </div>
+
                             <div>
                                 <Label htmlFor="materiales_id"> MATERIAL </Label>
 
-                                <Select
-                                    key={`materiales_id-${resetKey}`}
-                                    defaultValue={data.materiales_id}
-                                    onValueChange={(value) => setData('materiales_id', value)}
-                                >
-                                    <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
-                                        <SelectValue placeholder="Selecciona un Valor" />
-                                    </SelectTrigger>
-                                    <SelectContent
-                                        position="popper"
-                                        align="start"
-                                        side="bottom"
-                                        sideOffset={3}
-                                        className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
-                                    >
-                                        {materiales.map((material: any, idx: number) => {
-                                            return (
-                                                <SelectItem key={idx} value={material.id.toString()}>
-                                                    {' '}
-                                                    {material.codigo} - {material.descripcion}{' '}
-                                                </SelectItem>
-                                            );
-                                        })}
-                                    </SelectContent>
-                                </Select>
-
-                                {errors.materiales_id && <p className="mt-1 text-sm text-red-500">{errors.materiales_id}</p>}
+                                <Input
+                                    readOnly
+                                    autoFocus
+                                    id="material"
+                                    name="material"
+                                    required
+                                    value={material.descripcion}
+                                    placeholder="MATERIAL"
+                                />
                             </div>
                         </div>
                     </div>

@@ -85,7 +85,7 @@
         <tr><td colspan="4" class="section-title subtitle">INFORMACIÓN MATERIAL</td></tr>
         <tr>
             <td><strong>Lote NMD</strong></td>
-            <td>{{ $item->tipo_material ?? '' }}-{{ $item->lote_nmd ?? '' }}</td>
+            <td>{{ $item->tipo_material ?? '' }}-{{ str_pad($item->lote_nmd?? '', 4, "0", STR_PAD_LEFT)  }}</td>
             <td><strong>Cantidad Total</strong></td>
             <td>{{ $item->cantidad_total ?? '' }}</td>
         </tr>

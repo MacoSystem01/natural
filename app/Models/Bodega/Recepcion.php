@@ -15,8 +15,11 @@ class Recepcion extends Model
     protected $table = 'bodega_recepcion';
     protected $fillable=[
         'created_by',
-        'tipo_material',
+        'updated_by',
+        'approved_by',
         'materiales_id',
+        'unidades_id',
+        'tipo_material',
         'proveedor',
         'fabricante',
         'direccion',
@@ -28,7 +31,6 @@ class Recepcion extends Model
         'cantidad_total',
         'cantidad_contenedor',
         'n_contenedor',
-        'unidades_id',
         'material',
         'descripcion',
         't_c',
