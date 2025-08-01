@@ -98,54 +98,63 @@ export default function ({ id, materiales, unidades }: any) {
             <div className="columns-1 gap-4 space-y-4 p-8">
                 <form onSubmit={submit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
+                        <form onSubmit={submit}>
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                             <div>
-                                <Label htmlFor="area"> DESTINO </Label>
-
+                                <Label htmlFor="destino">DESTINO</Label>
                                 <Input
-                                    autoFocus
-                                    id="area"
-                                    name="area"
-                                    required
-                                    value={data.area}
-                                    placeholder="DESTINO"
-                                    onChange={(e) => setData('area', e.target.value)}
+                                autoFocus
+                                id="destino"
+                                name="destino"
+                                required
+                                value={data.destino}
+                                placeholder="DESTINO"
+                                onChange={(e) => setData('destino', e.target.value)}
                                 />
-
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
+                                {errors.destino && (
+                                <p className="mt-1 text-sm text-red-500">{errors.destino}</p>
+                                )}
                             </div>
+
                             <div>
-                                <Label htmlFor="area"> CÓDIGO </Label>
-
+                                <Label htmlFor="codigo">CÓDIGO</Label>
                                 <Input
-                                    autoFocus
-                                    id="area"
-                                    name="area"
-                                    required
-                                    value={data.area}
-                                    placeholder="CÓDIGO"
-                                    onChange={(e) => setData('area', e.target.value)}
+                                id="codigo"
+                                name="codigo"
+                                required
+                                value={data.codigo}
+                                placeholder="CÓDIGO"
+                                onChange={(e) => setData('codigo', e.target.value)}
                                 />
-
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
+                                {errors.codigo && (
+                                <p className="mt-1 text-sm text-red-500">{errors.codigo}</p>
+                                )}
                             </div>
+
                             <div>
-                                <Label htmlFor="area"> OP </Label>
-
+                                <Label htmlFor="op">OP</Label>
                                 <Input
-                                    autoFocus
-                                    id="area"
-                                    name="area"
-                                    required
-                                    value={data.area}
-                                    placeholder="OP"
-                                    onChange={(e) => setData('area', e.target.value)}
+                                id="op"
+                                name="op"
+                                required
+                                value={data.op}
+                                placeholder="OP"
+                                onChange={(e) => setData('op', e.target.value)}
                                 />
-
-                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
+                                {errors.op && (
+                                <p className="mt-1 text-sm text-red-500">{errors.op}</p>
+                                )}
                             </div>
+
+                            <div className="flex flex-col justify-end">
+                                <Button type="submit" className="w-full">
+                                Buscar
+                                </Button>
+                            </div>
+                            </div>
+                        </form>
                         </div>
-                    </div>
+
 
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <div className="mb-4 flex items-center justify-end">
