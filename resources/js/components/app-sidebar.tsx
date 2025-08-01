@@ -64,7 +64,12 @@ const mainNavItems: NavItem[] = [
                         href: '/planeacion/',
                         children: [
                             {
-                                title: 'Registro de Lote',
+                                title: 'Control de Emisión Lotes de Producción',
+                                icon: FileText,
+                                href: '/planeacion/RegistroLote',
+                            },
+                            {
+                                title: 'Anulación de Lote',
                                 icon: FileText,
                                 href: '/planeacion/RegistroLote',
                             },

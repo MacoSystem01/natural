@@ -98,7 +98,7 @@ export default function ({ id, materiales, unidades }: any) {
             <div className="columns-1 gap-4 space-y-4 p-8">
                 <form onSubmit={submit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
+                        <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
                             <div>
                                 <Label htmlFor="area"> DESTINO </Label>
 
@@ -109,6 +109,21 @@ export default function ({ id, materiales, unidades }: any) {
                                     required
                                     value={data.area}
                                     placeholder="DESTINO"
+                                    onChange={(e) => setData('area', e.target.value)}
+                                />
+
+                                {errors.area && <p className="mt-1 text-sm text-red-500">{errors.area}</p>}
+                            </div>
+                            <div>
+                                <Label htmlFor="area"> CÓDIGO </Label>
+
+                                <Input
+                                    autoFocus
+                                    id="area"
+                                    name="area"
+                                    required
+                                    value={data.area}
+                                    placeholder="CÓDIGO"
                                     onChange={(e) => setData('area', e.target.value)}
                                 />
 
@@ -142,6 +157,7 @@ export default function ({ id, materiales, unidades }: any) {
                         <table className="w-full table-fixed whitespace-nowrap">
                             <thead>
                                 <tr className="text-left font-bold">
+                                    <th className="w-1/4"> CÓDIGO </th>
                                     <th className="w-1/4"> MATERIAL </th>
                                     <th className="w-1/4"> LOTE </th>
                                     <th className="w-1/5"> CANTIDAD </th>
@@ -156,7 +172,7 @@ export default function ({ id, materiales, unidades }: any) {
                                             <td className="w-1/4 border-t p-2 align-top break-words">
                                                 <Select key={`materiales_id-${resetKey}`}>
                                                     <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
-                                                        <SelectValue placeholder="Selecciona un Valor" />
+                                                        <SelectValue placeholder="Selecciona un Código" />
                                                     </SelectTrigger>
                                                     <SelectContent
                                                         position="popper"
@@ -183,6 +199,17 @@ export default function ({ id, materiales, unidades }: any) {
                                                     name="area"
                                                     required
                                                     value={data.area}
+                                                    placeholder="MATERIAL"
+                                                    onChange={(e) => setData('area', e.target.value)}
+                                                />
+                                            </td>
+                                            <td className="w-1/4 border-t p-2 align-top break-words">
+                                                <Input
+                                                    autoFocus
+                                                    id="area"
+                                                    name="area"
+                                                    required
+                                                    value={data.area}
                                                     placeholder="LOTE"
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
@@ -199,9 +226,9 @@ export default function ({ id, materiales, unidades }: any) {
                                                 />
                                             </td>
                                             <td className="w-1/4 border-t p-2 align-top break-words">
-                                                <Select key={`unidades_id-${resetKey}`}>
+                                                <Select key={`materiales_id-${resetKey}`}>
                                                     <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">
-                                                        <SelectValue placeholder="Selecciona un Valor" />
+                                                        <SelectValue placeholder="Selecciona un Código" />
                                                     </SelectTrigger>
                                                     <SelectContent
                                                         position="popper"
@@ -210,11 +237,11 @@ export default function ({ id, materiales, unidades }: any) {
                                                         sideOffset={3}
                                                         className="rounded-md border border-gray-300 bg-white p-1 shadow-md"
                                                     >
-                                                        {unidades.map((unidad: any, idx: number) => {
+                                                        {materiales.map((material: any, idx: number) => {
                                                             return (
-                                                                <SelectItem key={idx} value={unidad.id.toString()}>
+                                                                <SelectItem key={idx} value={material.codigo}>
                                                                     {' '}
-                                                                    {unidad.descripcion}{' '}
+                                                                    {material.codigo} - {material.descripcion}{' '}
                                                                 </SelectItem>
                                                             );
                                                         })}
