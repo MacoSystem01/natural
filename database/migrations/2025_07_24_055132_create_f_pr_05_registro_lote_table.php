@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('registro_lote', function (Blueprint $table) {
+        Schema::create('registro-lote', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
@@ -27,7 +27,14 @@ return new class extends Migration
             $table->timestamp('fecha_inicializacion')->useCurrent();
             $table->string('cantidad_producida');
             $table->timestamp('fecha')->useCurrent();
-            $table->string('observaciones')->nullable(); //Son las Observaciones de la tabla "DOCUMENTACIÓN CONTENIDA"
+            $table->string('observaciones')->nullable();
+            // FIRMAS
+             $table->string('revisado_por')->nullable();
+            $table->date('fecha_revisado')->nullable();
+            $table->string('aprobado_por')->nullable();
+            $table->date('fecha_aprobado')->nullable();
+            $table->string('liberado_por')->nullable();
+            $table->date('fecha_liberado')->nullable();
             //METADATA
             $table->timestamp('fecha_contenida')->nullable(); //Es la fecha de la tabla "DOCUMENTACIÓN CONTENIDA"
             $table->timestamp('aproved_at')->nullable();

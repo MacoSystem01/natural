@@ -66,12 +66,12 @@ const mainNavItems: NavItem[] = [
                             {
                                 title: 'Control de Emisión Lotes de Producción',
                                 icon: FileText,
-                                href: '/planeacion/conciliacion-orden-produccion',
+                                href: 'planeacion/registrolote/registrolote',
                             },
                             {
                                 title: 'Anulación de Lote',
                                 icon: FileText,
-                                href: '/planeacion/registrolote',
+                                href: '/planeacion/conciliacion-orden-produccion',
                             },
                             {
                                 title: 'Orden de Producción',

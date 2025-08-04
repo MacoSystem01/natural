@@ -180,7 +180,7 @@ export const MaterialEmpaqueyEnvase = () => {
                             name="area"
                             required
                             value={data.area}
-                            placeholder="MOTIVO DE SOLICITUD"
+                            placeholder="Observaciones"
                             onChange={(e) => setData('area', e.target.value)}
                         />
 

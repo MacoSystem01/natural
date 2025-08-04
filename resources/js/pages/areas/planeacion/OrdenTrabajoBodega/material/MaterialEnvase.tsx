@@ -221,7 +221,7 @@ export const MaterialEnvase = ({ materiales }: any) => {
                             name="area"
                             required
                             value={data.area}
-                            placeholder="MOTIVO DE SOLICITUD"
+                            placeholder="Observaciones"
                             onChange={(e) => setData('area', e.target.value)}
                         />
 

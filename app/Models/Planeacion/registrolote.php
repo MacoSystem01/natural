@@ -10,7 +10,7 @@ class Recepcion extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'registrolote';
+    protected $table = 'registro-lote';
     protected $fillable=[
         'created_by',
         'codigo',

@@ -110,19 +110,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/{tipo_material}', 'index');
             });
 
-        // Orden Trabajo Codificado
+        // ORDEN DE TRABAJO CODIFICADO
         Route::controller(App\Http\Controllers\Planeacion\OrdenTrabajoCodificadoController::class)
             ->prefix('orden-trabajo-codificado')
             ->group(function () {
                 Route::get('/', 'index');
             });
+        //REGISTRO LOTE
+            Route::controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
+                ->prefix('registrolote')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('pdf/{registroLote}', 'descargarPDF')->name('pdf');
+                });
 
-        Route::prefix('registrolote')
-            ->controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
-            ->group(function () {
-                Route::get('/', 'index');
-                Route::get('/pdf/{id}', 'descargarPDF')->name('planeacion.registrolote.pdf');
-            });
 
 
         // Tiempo Improductivo

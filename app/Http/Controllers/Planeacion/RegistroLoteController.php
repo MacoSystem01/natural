@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class RegistroLoteController extends Controller
+class registroloteController extends Controller
 {
     public function index()
     {
-        return Inertia::render('areas/planeacion/RegistroLote');
+        return Inertia::render('areas/planeacion/registrolote/registrolote', []);
     }
 }
