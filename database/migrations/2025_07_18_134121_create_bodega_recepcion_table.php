@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('bodega_recepcion', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('users');
-            $table->foreignId('approved_by')->nullable()->constrained('users');
             $table->foreignId('materiales_id')->nullable()->constrained('materiales');
             $table->foreignId('unidades_id')->nullable()->constrained('unidades_medida');
 
@@ -68,10 +65,13 @@ return new class extends Migration
             $table->text('material_certificado_obs')->nullable();
 
             $table->char('estado', 1);
-
-            $table->boolean('aprobado')->nullable();
             $table->text('observacion_devolucion')->nullable();
-            $table->timestamp('approved_at')->nullable();
+
+            $table->foreignId('creado_por')->nullable()->constrained('users');
+            $table->foreignId('modificado_por')->nullable()->constrained('users');
+
+            $table->foreignId('aprobado_por')->nullable()->constrained('users');            
+            $table->timestamp('aprobado_fecha')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

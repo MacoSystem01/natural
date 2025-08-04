@@ -27,7 +27,7 @@ class RecepcionController extends Controller
         ]);*/
 
         $data = $request->all();
-        $data['created_by'] = \Auth::user()->id;
+        $data['creado_por'] = \Auth::user()->id;
 
         $item = Recepcion::create( $data );
 
@@ -55,7 +55,7 @@ class RecepcionController extends Controller
         ]);*/
 
         $data = $request->all();
-        $data['updated_by'] = \Auth::user()->id;
+        $data['modificado_por'] = \Auth::user()->id;
 
         $recepcion->update( $data );
 

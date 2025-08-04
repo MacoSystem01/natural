@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { ArrowRightCircle, Check, Cog, CornerDownLeft, Factory, FileText, Folders, FormInput, History, House, Inbox, Package, ShieldCheck, Upload, User, ClipboardList, Tags, FileLock, Clock, Recycle, ClipboardCheck, Tag, Bookmark, ListOrdered } from 'lucide-react';
+import { ArrowRightCircle, Bookmark, Check, ClipboardCheck, ClipboardList, Clock, Cog, CornerDownLeft, Factory, FileLock, FileText, Folders, FormInput, History, House, Inbox, ListOrdered, Package, Recycle, ShieldCheck, Tag, Tags, Upload, User } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -61,17 +61,17 @@ const mainNavItems: NavItem[] = [
                     {
                         title: 'Emisión de batch record',
                         icon: Tags,
-                        href: '/planeacion/',
+                        href: '',
                         children: [
                             {
                                 title: 'Control de Emisión Lotes de Producción',
                                 icon: FileText,
-                                href: '/planeacion/RegistroLote',
+                                href: '/planeacion/conciliacion-orden-produccion',
                             },
                             {
                                 title: 'Anulación de Lote',
                                 icon: FileText,
-                                href: '/planeacion/RegistroLote',
+                                href: '/planeacion/registrolote',
                             },
                             {
                                 title: 'Orden de Producción',

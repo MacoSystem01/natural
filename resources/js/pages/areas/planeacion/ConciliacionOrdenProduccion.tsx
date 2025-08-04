@@ -1,9 +1,17 @@
-import React from 'react';
+import AppLayout from '@/layouts/app-layout';
+import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  {
+      title: 'Planeacion / Conciliacion orden de Producción',
+      href: '/planeacion/conciliacion-orden-produccion',
+  },
+];
 
 export default function ConciliacionOrdenProduccion() {
   return (
-    <>
+    <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Conciliación Orden de Producción" />
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">Conciliación Orden de Producción</h1>
@@ -29,6 +37,6 @@ export default function ConciliacionOrdenProduccion() {
           </tbody>
         </table>
       </div>
-    </>
+    </AppLayout>
   );
 }
