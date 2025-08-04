@@ -18,6 +18,7 @@ Route::middleware(['web', 'verified'])
     Route::prefix('bodega')
         ->name('bodega.')
         ->group( function(){
+            // API RECEPCION
             Route::prefix('recepcion')
                 ->controller(App\Http\Controllers\Api\Bodega\RecepcionController::class)
                 ->name('recepcion.')
@@ -27,6 +28,8 @@ Route::middleware(['web', 'verified'])
                     Route::post('byOP/{op}', 'byOP')->name('find');
                 });
             Route::apiResource('recepcion', App\Http\Controllers\Api\Bodega\RecepcionController::class);
+
+            // Entrega
         });
 
 
@@ -45,6 +48,7 @@ Route::middleware(['web', 'verified'])
 
 
     Route::prefix('planeacion')->group(function () {
+/*
         // FPr09 Bodega MP
         Route::controller(App\Http\Controllers\Planeacion\FPr09BodegaMPController::class)
             ->prefix('fpr09-bodega-mp')
@@ -79,5 +83,8 @@ Route::middleware(['web', 'verified'])
             ->group(function () {
                 Route::get('/', 'index');
             });
+
+
+*/
     });
 });

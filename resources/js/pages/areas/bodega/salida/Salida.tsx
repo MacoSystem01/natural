@@ -100,62 +100,58 @@ export default function ({ id, materiales, unidades }: any) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Areas" />
+            <Head title="Salida de Bodega" />
 
             <div className="columns-1 gap-4 space-y-4 p-8">
+                <h2 className='font-bold mb-10 text-center'>
+                    SALIDA DE BODEGA
+                </h2>
+
                 <form onSubmit={submit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
-                        <form onSubmit={submit}>
-                            <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-4">
-                                <div>
-                                    <Label htmlFor="destino">DESTINO</Label>
-                                    <Input
-                                        autoFocus
-                                        id="destino"
-                                        name="destino"
-                                        required
-                                        value={data.destino}
-                                        placeholder="DESTINO"
-                                        onChange={(e) => setData('destino', e.target.value)}
-                                    />
-                                    {errors.destino && <p className="mt-1 text-sm text-red-500">{errors.destino}</p>}
-                                </div>
-
-                                <div>
-                                    <Label htmlFor="codigo">CÓDIGO</Label>
-                                    <Input
-                                        id="codigo"
-                                        name="codigo"
-                                        required
-                                        value={data.codigo}
-                                        placeholder="CÓDIGO"
-                                        onChange={(e) => setData('codigo', e.target.value)}
-                                    />
-                                    {errors.codigo && <p className="mt-1 text-sm text-red-500">{errors.codigo}</p>}
-                                </div>
-
-                                <div>
-                                    <Label htmlFor="op">OP</Label>
-                                    <Input
-                                        id="op"
-                                        name="op"
-                                        required
-                                        value={data.op}
-                                        placeholder="OP"
-                                        onChange={(e) => setData('op', e.target.value)}
-                                    />
-                                    {errors.op && <p className="mt-1 text-sm text-red-500">{errors.op}</p>}
-                                </div>
-
-                                <div className="flex flex-col justify-end">
-                                    <Button type="submit" className="w-full">
-                                        Buscar
-                                    </Button>
-                                </div>
+                        <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-4">
+                            <div>
+                                <Label htmlFor="destino">DESTINO</Label>
+                                <Input
+                                    autoFocus
+                                    id="destino"
+                                    name="destino"
+                                    required
+                                    value={data.destino}
+                                    placeholder="DESTINO"
+                                    onChange={(e) => setData('destino', e.target.value)}
+                                />
+                                {errors.destino && <p className="mt-1 text-sm text-red-500">{errors.destino}</p>}
                             </div>
-                        </form>
-                    </div>
 
+                            <div>
+                                <Label htmlFor="codigo">CÓDIGO</Label>
+                                <Input
+                                    id="codigo"
+                                    name="codigo"
+                                    required
+                                    value={data.codigo}
+                                    placeholder="CÓDIGO"
+                                    onChange={(e) => setData('codigo', e.target.value)}
+                                />
+                                {errors.codigo && <p className="mt-1 text-sm text-red-500">{errors.codigo}</p>}
+                            </div>
+
+                            <div>
+                                <Label htmlFor="op">OP</Label>
+                                <Input id="op" name="op" required value={data.op} placeholder="OP" onChange={(e) => setData('op', e.target.value)} />
+                                {errors.op && <p className="mt-1 text-sm text-red-500">{errors.op}</p>}
+                            </div>
+
+                            <div className="flex flex-col justify-end">
+                                <Button type="submit" className="w-full">
+                                    Buscar
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form onSubmit={submit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <div className="mb-4 flex items-center justify-end">
                             <Button type="button" onClick={onAddMaterial}>
@@ -166,11 +162,11 @@ export default function ({ id, materiales, unidades }: any) {
                         <table className="w-full table-fixed whitespace-nowrap">
                             <thead>
                                 <tr className="text-left font-bold">
-                                    <th className="w-1/4"> CÓDIGO </th>
-                                    <th className="w-1/4"> MATERIAL </th>
-                                    <th className="w-1/4"> LOTE </th>
-                                    <th className="w-1/5"> CANTIDAD </th>
-                                    <th className="w-1/4"> UNIDAD MEDIDA </th>
+                                    <th className="w-1/5 text-center"> CÓDIGO </th>
+                                    <th className="w-1/5 text-center"> MATERIAL </th>
+                                    <th className="w-1/5 text-center"> LOTE </th>
+                                    <th className="w-1/6 text-center"> CANTIDAD </th>
+                                    <th className="w-1/6 text-center"> UNIDAD MEDIDA </th>
                                     <th className="align-center flex w-1/12"> </th>
                                 </tr>
                             </thead>

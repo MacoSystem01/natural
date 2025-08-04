@@ -29,7 +29,7 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
                 <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip={item.title}>
                         {item.icon && <item.icon />}
-                        <span>{item.title}</span>
+                        <span title={item.title}>{item.title}</span>
                         <ChevronDown className="group-data-[state=open/collapsible:rotate-90 ml-auto transition-transform duration-200" />
                     </SidebarMenuButton>
                 </CollapsibleTrigger>
@@ -43,7 +43,7 @@ export const NavMenuSubItem = ({ item }: { item: NavItem }) => {
                                     <SidebarMenuSubButton asChild isActive={child.href == page.url}>
                                         <Link href={child.href} prefetch>
                                             {child.icon && <child.icon />}
-                                            <span>{child.title}</span>
+                                            <span title={child.title}>{child.title}</span>
                                         </Link>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>

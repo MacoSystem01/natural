@@ -6,6 +6,9 @@ import { BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler, useState } from 'react';
+import { MateriaPrima } from './orden_trabajo/MateriaPrima';
+import { MaterialEmpaque } from './orden_trabajo/MaterialEmpaque';
+import { MaterialEnvase } from './orden_trabajo/MaterialEnvase';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -19,7 +22,7 @@ type SearchForm = {
     op: string;
 };
 
-export default function ({ constants }: any) {
+export default function ({ constants, materiales }: any) {
     const { data, setData, processing, errors, get, reset } = useForm<SearchForm>({
         tipo_material: '',
         op: '',
@@ -33,11 +36,28 @@ export default function ({ constants }: any) {
         console.log('Buscar con:', data);
     };
 
+    const renderComponente = () => {
+        switch (data.tipo_material) {
+            case 'MP':
+                return <MateriaPrima materiales={materiales} />;
+            case 'ME':
+                return <MaterialEnvase />;
+            case 'MEE':
+                return <MaterialEmpaque />;
+            default:
+                return <></>;
+        }
+    };
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Buscar Salida" />
+            <Head title="Orden de Trabajo" />
 
             <div className="columns-1 gap-4 space-y-4 p-8">
+                <h2 className='font-bold mb-10 text-center'>
+                    ORDEN DE TRABAJO BODEGA
+                </h2>
+
                 <form onSubmit={submit} className="space-y-6">
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
@@ -110,6 +130,8 @@ export default function ({ constants }: any) {
                             )}
                         </Button>
                     </div>
+
+                    {data.tipo_material && renderComponente()}
                 </form>
             </div>
         </AppLayout>

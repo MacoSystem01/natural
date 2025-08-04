@@ -21,95 +21,117 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
     
         // RUTA BODEGA
-    Route::controller(App\Http\Controllers\Bodega\RecepcionController::class)
-        ->prefix('bodega')
+    Route::prefix('bodega')
         ->group( function(){
             Route::prefix('recepcion')
+            ->controller(App\Http\Controllers\Bodega\RecepcionController::class)
             ->group( function(){
-                Route::get('/', 'recepcion');
+                Route::get('/', 'index');
                 Route::get('/pdf/{id}', 'descargarPDF')->name('bodega.recepcion.pdf');
             });
 
-            Route::get('/entrega', 'entrega');
-            Route::get('/salida', 'salida');
-            Route::get('/devolucion', 'devolucion');
+            Route::prefix('entrega')
+            ->controller(App\Http\Controllers\Bodega\EntregaController::class)
+            ->group( function(){
+                Route::get('/', 'index');
+            });
+
+            Route::prefix('salida')
+            ->controller(App\Http\Controllers\Bodega\SalidaController::class)
+            ->group( function(){
+                Route::get('/', 'index');
+            });
+
+            Route::prefix('devolucion')
+            ->controller(App\Http\Controllers\Bodega\DevolucionController::class)
+            ->group( function(){
+                Route::get('/', 'index');
+            });
+
         });
 
-        // PLANEACIÓN
-        Route::prefix('planeacion')->group(function () {
+    // PLANEACIÓN
+    Route::prefix('planeacion')->group(function () {
 
-            // Conciliación Orden Producción
-            Route::controller(App\Http\Controllers\Planeacion\ConciliacionOrdenProduccionController::class)
-                ->prefix('conciliacion-orden-produccion')
-                ->group(function () {
-                    Route::get('/', 'index');
-                    Route::get('/pdf/{id}', 'descargarPDF')->name('planeacion.conciliacionOrdenProduccion.pdf');
-                });
+        // Conciliación Orden Producción
+        Route::controller(App\Http\Controllers\Planeacion\ConciliacionOrdenProduccionController::class)
+            ->prefix('conciliacion-orden-produccion')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/pdf/{id}', 'descargarPDF')->name('planeacion.conciliacionOrdenProduccion.pdf');
+            });
 
-            // Detalle Acondicionamiento
-            Route::controller(App\Http\Controllers\Planeacion\DetalleAcondicionamientoController::class)
-                ->prefix('detalle-acondicionamiento')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // Detalle Acondicionamiento
+        Route::controller(App\Http\Controllers\Planeacion\DetalleAcondicionamientoController::class)
+            ->prefix('detalle-acondicionamiento')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
 
-            // Detalle Dispensado
-            Route::controller(App\Http\Controllers\Planeacion\DetalleDispensadoController::class)
-                ->prefix('detalle-dispensado')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // Detalle Dispensado
+        Route::controller(App\Http\Controllers\Planeacion\DetalleDispensadoController::class)
+            ->prefix('detalle-dispensado')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
 
-            // Detalle Envasado
-            Route::controller(App\Http\Controllers\Planeacion\DetalleEnvasadoController::class)
-                ->prefix('detalle-envasado')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // Detalle Envasado
+        Route::controller(App\Http\Controllers\Planeacion\DetalleEnvasadoController::class)
+            ->prefix('detalle-envasado')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
 
-            // Detalle Fabricación
-            Route::controller(App\Http\Controllers\Planeacion\DetalleFabricacionController::class)
-                ->prefix('detalle-fabricacion')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // Detalle Fabricación
+        Route::controller(App\Http\Controllers\Planeacion\DetalleFabricacionController::class)
+            ->prefix('detalle-fabricacion')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
 
-            // FPr09 Bodega MP
-            Route::controller(App\Http\Controllers\Planeacion\FPr09BodegaMPController::class)
-                ->prefix('fpr09-bodega-mp')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // FPr09 Bodega MP
+        Route::controller(App\Http\Controllers\Planeacion\FPr09BodegaMPController::class)
+            ->prefix('fpr09-bodega-mp')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
 
-            // Orden Producción
-            Route::controller(App\Http\Controllers\Planeacion\OrdenProduccionController::class)
-                ->prefix('orden-produccion')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // ORDEN DE TRABAJO BODEGA MEE
+        Route::controller(App\Http\Controllers\Planeacion\OrdenTrabajoBodegaController::class)
+            ->prefix('orden-trabajo-bodega')
+            ->group(function () {
+                Route::get('/{tipo_material}', 'index');
+            });
 
-            // Orden Trabajo MP Item
-            Route::controller(App\Http\Controllers\Planeacion\OrdenTrabajoMPItemController::class)
-                ->prefix('orden-trabajo-mp-item')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
+        // MATERIAL ENVASE Y EMPAQUE DISPENSADO
+        Route::controller(App\Http\Controllers\Planeacion\MaterialDispensadoController::class)
+            ->prefix('material-dispensado')
+            ->group(function () {
+                Route::get('/{tipo_material}', 'index');
+            });
 
-            Route::prefix('registrolote')
-                ->controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
-                ->group(function () {
-                    Route::get('/', 'index');
-                    Route::get('/pdf/{id}', 'descargarPDF')->name('planeacion.registrolote.pdf');
-                });
+        // Orden Trabajo Codificado
+        Route::controller(App\Http\Controllers\Planeacion\OrdenTrabajoCodificadoController::class)
+            ->prefix('orden-trabajo-codificado')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
+
+        Route::prefix('registrolote')
+            ->controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/pdf/{id}', 'descargarPDF')->name('planeacion.registrolote.pdf');
+            });
 
 
-            // Tiempo Improductivo
-            Route::controller(App\Http\Controllers\Planeacion\TiempoImproductivoController::class)
-                ->prefix('tiempo-improductivo')
-                ->group(function () {
-                    Route::get('/', 'index');
-                });
-        });
+        // Tiempo Improductivo
+        Route::controller(App\Http\Controllers\Planeacion\TiempoImproductivoController::class)
+            ->prefix('tiempo-improductivo')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
+    });
 
         // PRODUCCIÓN
     // Route::controller(App\Http\Controllers\Produccion\RecepcionController::class)

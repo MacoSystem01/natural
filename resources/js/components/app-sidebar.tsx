@@ -81,32 +81,32 @@ const mainNavItems: NavItem[] = [
                             {
                                 title: 'Orden de Trabajo Bodega MP',
                                 icon: ClipboardList,
-                                href: '/planeacion/FPr09BodegaMP',
+                                href: '/planeacion/orden-trabajo-bodega/MP',
                             },
                             {
                                 title: 'Orden de Trabajo Bodega ME',
                                 icon: ClipboardList,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/orden-trabajo-bodega/ME',
                             },
                             {
                                 title: 'Orden de Trabajo Bodega MEE',
                                 icon: ClipboardList,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/orden-trabajo-bodega/MEE',
                             },
                             {
                                 title: 'Etiqueta de Identificación Material de Envase y Empaque Dispensado',
                                 icon: Tag,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/material-dispensado/ME',
                             },
                             {
                                 title: 'Etiqueta de Identificación Materias Primas',
                                 icon: Bookmark,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/material-dispensado/MP',
                             }, 
                             { 
                                 title: 'Orden de Trabajo Codificado',
                                 icon: ListOrdered,
-                                href: 'areas/planeacion/',
+                                href: '/planeacion/orden-trabajo-codificado',
                             },
                         ]
                         
