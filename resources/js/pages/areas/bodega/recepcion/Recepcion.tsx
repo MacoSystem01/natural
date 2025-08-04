@@ -267,9 +267,12 @@ export default function ({ id, constants, materiales, unidades }: any) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Areas" />
+            <Head title="Recepción de Materiales" />
 
             <div className="columns-1 gap-4 space-y-4 p-8">
+                <h2 className='font-bold mb-10 text-center'>
+                    REPORTE DE RECEPCION DE MATERIALES
+                </h2>
                 <form onSubmit={onSubmit}>
                     <div className="my-4 rounded-lg bg-white p-4 shadow-md inset-shadow-sm">
                         <h6 className="mb-5 text-center font-bold">DATOS INICIALES</h6>
@@ -310,7 +313,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="materiales_id"> CODIGO MATERIAL </Label>
 
                                 <Input
-                                    autoFocus
                                     id="materiales_id"
                                     name="materiales_id"
                                     required
@@ -337,7 +339,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
 
                                 <Input
                                     readOnly
-                                    autoFocus
                                     id="material"
                                     name="material"
                                     required
@@ -355,7 +356,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="proveedor"> PROVEEDOR </Label>
 
                                 <Input
-                                    autoFocus
                                     id="proveedor"
                                     name="proveedor"
                                     required
@@ -370,7 +370,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="fabricante"> FABRICANTE </Label>
 
                                 <Input
-                                    autoFocus
                                     id="fabricante"
                                     name="fabricante"
                                     required
@@ -385,7 +384,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="direccion"> DIRECCION PROVEEDOR </Label>
 
                                 <Input
-                                    autoFocus
                                     id="direccion"
                                     name="direccion"
                                     required
@@ -400,7 +398,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="orden_compra"> ORDEN DE COMPRA </Label>
 
                                 <Input
-                                    autoFocus
                                     id="orden_compra"
                                     name="orden_compra"
                                     required
@@ -415,7 +412,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="factura"> FACTURA / REMISION </Label>
 
                                 <Input
-                                    autoFocus
                                     id="factura"
                                     name="factura"
                                     required
@@ -430,7 +426,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="lote"> LOTE PROVEEDOR </Label>
 
                                 <Input
-                                    autoFocus
                                     id="lote"
                                     name="lote"
                                     required
@@ -446,7 +441,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
 
                                 <Input
                                     type="date"
-                                    autoFocus
                                     id="fecha_vencimiento"
                                     name="fecha_vencimiento"
                                     required
@@ -468,7 +462,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
 
                                 <Input
                                     readOnly
-                                    autoFocus
                                     id="lote_nmd"
                                     name="lote_nmd"
                                     required
@@ -483,7 +476,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="cantidad_total"> CANTIDAD TOTAL </Label>
 
                                 <Input
-                                    autoFocus
                                     id="cantidad_total"
                                     name="cantidad_total"
                                     required
@@ -498,7 +490,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="cantidad_contenedor"> CANTIDAD POR CONTENEDOR </Label>
 
                                 <Input
-                                    autoFocus
                                     id="cantidad_contenedor"
                                     name="cantidad_contenedor"
                                     required
@@ -513,7 +504,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="n_contenedor"> N.º CONTENEDORES </Label>
 
                                 <Input
-                                    autoFocus
                                     id="n_contenedor"
                                     name="n_contenedor"
                                     required
@@ -618,7 +608,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                 <Label htmlFor="t_c"> T (ºC) = </Label>
 
                                 <Input
-                                    autoFocus
                                     id="t_c"
                                     name="t_c"
                                     required
@@ -660,7 +649,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                         <h6 className="mb-5 text-center font-bold">OBSERVACIONES</h6>
                         <div>
                             <Textarea
-                                autoFocus
                                 id="observaciones"
                                 name="observaciones"
                                 rows={3}
@@ -702,7 +690,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -726,7 +713,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -750,7 +736,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -774,7 +759,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -801,7 +785,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -825,7 +808,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -849,7 +831,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -876,7 +857,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -903,7 +883,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -930,7 +909,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -954,7 +932,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}
@@ -981,7 +958,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="descripcion_corresponde_obs"
                                             name="descripcion_corresponde_obs"
                                             rows={3}
@@ -1005,7 +981,6 @@ export default function ({ id, constants, materiales, unidades }: any) {
                                     </td>
                                     <td className="w-1/4 border-t break-words">
                                         <Textarea
-                                            autoFocus
                                             id="area"
                                             name="area"
                                             rows={3}

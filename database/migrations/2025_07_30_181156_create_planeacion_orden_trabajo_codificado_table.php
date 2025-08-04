@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orden_trabajo_codificado', function (Blueprint $table) {
+        Schema::create('planeacion_orden_trabajo_codificado', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
@@ -21,7 +21,7 @@ return new class extends Migration
 
             // Presentación
             $table->string('presentacion')->nullable();
-            $table->decimal('tamano_lote_ml', 10, 2)->nullable();
+            $table->decimal('tamano_lote', 10, 2)->nullable();
             $table->integer('cantidad')->nullable();
             $table->string('op')->nullable();
 
@@ -39,10 +39,14 @@ return new class extends Migration
             $table->string('numero_lote_material')->nullable();
 
             // Entregas
-            $table->string('entregado_por')->nullable();
-            $table->date('entregado_fecha')->nullable();
-            $table->string('recibido_por')->nullable();
-            $table->date('recibido_fecha')->nullable();
+            $table->foreignId('creado_por')->nullable()->constrained('users');
+            $table->foreignId('modificado_por')->nullable()->constrained('users');
+
+            $table->foreignId('recibido_por')->nullable()->constrained('users');
+            $table->timestamp('aprobado_fecha')->nullable();
+            
+            $table->char('estado', 1);
+            $table->text('observacion_devolucion')->nullable();
 
             // Observaciones
             $table->text('observaciones')->nullable();
@@ -57,6 +61,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orden_trabajo_codificado');
+        Schema::dropIfExists('planeacion_orden_trabajo_codificado');
     }
 };

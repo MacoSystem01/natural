@@ -15,7 +15,7 @@ class RecepcionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function recepcion()
+    public function index()
     {
         $borrador = Recepcion::where('estado', 'B')
             ->where('created_by', \Auth::user()->id)
@@ -39,26 +39,4 @@ class RecepcionController extends Controller
         return $pdf->download('bodega_recepcion_'.$id.'.pdf');
     }
 
-    public function entrega()
-    {
-        return Inertia::render('areas/bodega/entrega/Entrega', [
-            'constants' => config('constants'),
-        ]);
-    }
-
-    public function salida()
-    {
-        return Inertia::render('areas/bodega/salida/Salida', [
-            'unidades' => UnidadesMedida::orderBy('descripcion')->get(),
-            'materiales' => Materiales::orderBy('descripcion')->get(),
-        ]);
-    }
-
-    public function devolucion()
-    {
-        return Inertia::render('areas/bodega/devolucion/Devolucion', [
-            'unidades' => UnidadesMedida::orderBy('descripcion')->get(),
-            'materiales' => Materiales::orderBy('descripcion')->get(),
-        ]);
-    }
 }
