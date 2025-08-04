@@ -117,11 +117,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/', 'index');
             });
         //REGISTRO LOTE
-            Route::controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
-                ->prefix('registrolote')
+            Route::prefix('registrolote')
+                ->controller(App\Http\Controllers\Planeacion\RegistroLoteController::class)
                 ->group(function () {
-                    Route::get('/', 'index')->name('index');
-                    Route::get('pdf/{registroLote}', 'descargarPDF')->name('pdf');
+                    Route::get('/', 'index');
+                    Route::get('/pdf/{id}', 'descargarPDF')->name('registrolote.registrolote.pdf');
                 });
 
 
