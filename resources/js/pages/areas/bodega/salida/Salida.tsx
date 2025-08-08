@@ -198,6 +198,7 @@ export default function ({ id, materiales, unidades }: any) {
                                                     onChange={(e) => setData('area', e.target.value)}
                                                 />
                                             </td>
+                                            {/* UNIDAD DE MEDIDA CAMBIARLO POR LA REAL */}
                                             <td className="w-1/4 border-t p-2 align-top break-words">
                                                 <Select key={`materiales_id-${resetKey}`}>
                                                     <SelectTrigger className="flex w-full justify-start rounded-md border border-gray-300 px-3 py-2 text-sm">

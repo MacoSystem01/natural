@@ -64,19 +64,19 @@ const mainNavItems: NavItem[] = [
                         href: '',
                         children: [
                             {
-                                title: 'Control de Emisión Lotes de Producción',
+                                title: 'Control Emisión de Lotes',
                                 icon: FileText,
-                                href: 'planeacion/registrolote/registrolote',
+                                href: '/planeacion/control-emision',
                             },
                             {
                                 title: 'Anulación de Lote',
                                 icon: FileText,
-                                href: '/planeacion/conciliacion-orden-produccion',
+                                href: '/planeacion/AnularLote',
                             },
                             {
                                 title: 'Orden de Producción',
                                 icon: ClipboardCheck,
-                                href: '/planeacion/OrdenProduccion',
+                                href: '/planeacion/orden-produccion',
                             },
                             {
                                 title: 'Orden de Trabajo Bodega MP',
@@ -107,6 +107,11 @@ const mainNavItems: NavItem[] = [
                                 title: 'Orden de Trabajo Codificado',
                                 icon: ListOrdered,
                                 href: '/planeacion/orden-trabajo-codificado',
+                            },
+                            {
+                                title: 'Lista de Chequeo Batch Record',
+                                icon: FileText,
+                                href: '/planeacion/registrolote',
                             },
                         ]
                         

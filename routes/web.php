@@ -123,12 +123,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
                     Route::get('/', 'index');
                     Route::get('/pdf/{id}', 'descargarPDF')->name('registrolote.registrolote.pdf');
                 });
+        //ANULACION DE lOTE
+            Route::prefix('AnularLote')
+                ->controller(App\Http\Controllers\Planeacion\AnularLoteController::class)
+                ->group(function () {
+                    Route::get('/', 'index');
+                    Route::get('/pdf/{id}', 'descargarPDF')->name('anular.AnularLote.pdf');
+                });
+        //CONTROL EMISIÓN DE LOTES
+            Route::prefix('control-emision')
+                ->controller(App\Http\Controllers\Planeacion\ControlLotesController::class)
+                ->group(function () {
+                    Route::get('/', 'index');
+                    Route::get('/pdf/{id}', 'descargarPDF')->name('controlemision.controllotes.pdf');
+                });
 
-
-
-        // Tiempo Improductivo
+        // TIEMPO INPRODUCTIVO
         Route::controller(App\Http\Controllers\Planeacion\TiempoImproductivoController::class)
             ->prefix('tiempo-improductivo')
+            ->group(function () {
+                Route::get('/', 'index');
+            });
+
+         // ORDEN PRODUCCIÓN
+        Route::controller(App\Http\Controllers\Planeacion\OrdenProduccionController::class)
+            ->prefix('orden-produccion')
             ->group(function () {
                 Route::get('/', 'index');
             });

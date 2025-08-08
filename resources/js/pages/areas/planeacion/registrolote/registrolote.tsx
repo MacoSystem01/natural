@@ -19,7 +19,7 @@ export default function RegistroLote() {
       <div className="p-6 space-y-6 text-sm text-gray-700">
         <div className="text-center">
           {/* <img src="/logo.png" alt="Logo" className="mx-auto h-16" /> */}
-          <h1 className="text-2xl font-bold">Control de Emisión Lotes de Producción</h1>
+          <h1 className="text-2xl font-bold">Lista de Chequeo Batch Record</h1>
           {/* <p className="text-sm font-medium">(BATCH RECORD / CONTROL DE EMISIÓN DE LOTES DE PRODUCCIÓN)</p> */}
         </div>
 

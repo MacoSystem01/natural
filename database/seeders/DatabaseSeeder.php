@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $this->call(Materiales::class);
-        $this->call(UnidadesMedida::class);
+        $this->call(MaterialesSeeder::class);
+        $this->call(UnidadesMedidasSeeder::class);
 
     }
 }
